@@ -7,14 +7,15 @@ using Castle.ActiveRecord;
 namespace UserGroupCms.Models
 {
 	[ActiveRecord]
-	public class UserGroup : AbstractModel<UserGroup>
+	public class Sponsor : AbstractModel<Sponsor>
 	{
 		[Property]
 		public string Name { get; set; }
 
 		[Property]
-		public string ShortName { get; set; }
+		public string LogoUrl { get; set; }
 
-
+		[Property]
+		public string Description { get; set; }
 	}
 }

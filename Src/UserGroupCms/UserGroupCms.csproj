@@ -64,8 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BaseModelController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SponsorController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -74,14 +78,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AbstractModel.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Sponsor.cs" />
     <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Event\Edit.aspx" />
+    <Content Include="Views\Event\List.aspx" />
     <Content Include="Views\Group\Edit.aspx" />
     <Content Include="Views\Group\List.aspx" />
+    <Content Include="Views\Sponsor\Edit.aspx" />
+    <Content Include="Views\Sponsor\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

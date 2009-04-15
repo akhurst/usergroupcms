@@ -33,7 +33,10 @@ namespace UserGroupCms
 			RegisterRoutes(RouteTable.Routes);
 			IConfigurationSource source = ConfigurationManager.GetSection("activerecord") as IConfigurationSource;
 			ActiveRecordStarter.Initialize(source,
-				typeof(UserGroup));
+				typeof(UserGroup),
+				typeof(Event),
+				typeof(Sponsor),
+				typeof(Person));
 		}
 	}
 }

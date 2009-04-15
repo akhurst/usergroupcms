@@ -38,7 +38,10 @@ namespace UserGroupCms.Tests
 				throw new InvalidTestConfigurationException();
 
 			ActiveRecordStarter.Initialize(source,
-				typeof(UserGroup));
+				typeof(UserGroup),
+				typeof(Event),
+				typeof(Person),
+				typeof(Sponsor));
 		}
 	}
 }
