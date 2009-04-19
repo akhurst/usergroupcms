@@ -1,12 +1,12 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.Sponsor>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.Company>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Sponsors
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Sponsors</h2>
 
     <table>
         <tr>
@@ -18,10 +18,16 @@
                 LogoUrl
             </th>
             <th>
+                Url
+            </th>
+            <th>
                 Description
             </th>
             <th>
                 Id
+            </th>
+            <th>
+                UserGroupId
             </th>
             <th>
                 IsNew
@@ -42,10 +48,16 @@
                 <%= Html.Encode(item.LogoUrl) %>
             </td>
             <td>
+                <%= Html.Encode(item.Url) %>
+            </td>
+            <td>
                 <%= Html.Encode(item.Description) %>
             </td>
             <td>
                 <%= Html.Encode(item.Id) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.UserGroupId) %>
             </td>
             <td>
                 <%= Html.Encode(item.IsNew) %>

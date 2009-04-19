@@ -4,20 +4,18 @@ using UserGroupCms.Models;
 
 namespace UserGroupCms.Controllers
 {
-	public class EventController : BaseModelController<Event>
+	public class PersonController : BaseModelController<Person>
 	{
 		public override ActionResult Edit(int? id)
 		{
 			ViewData["Companies"] = AbstractModel<Company>.FindAll(UserGroup);
-			ViewData["Speakers"] = AbstractModel<Person>.FindAll(UserGroup);
 
 			return base.Edit(id);
 		}
 
-		public override ActionResult Edit(Event model)
+		public override ActionResult Edit(Person model)
 		{
-			BinderHelper.Fill(model.Sponsors, Request.Form["Sponsors"]);
-			BinderHelper.Fill(model.Sponsors, Request.Form["Speakers"]);
+			model.Company = BinderHelper.Resolve<Company>(Request.Form["Company"]);
 
 			return base.Edit(model);
 		}

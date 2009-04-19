@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
 using System.Security.Principal;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.UI;
 
 namespace UserGroupCms.Controllers
 {
-
 	[HandleError]
 	public class AccountController : Controller
 	{
-
 		// This constructor is used by the MVC framework to instantiate the controller using
 		// the default forms authentication and membership providers.
 
@@ -32,30 +27,20 @@ namespace UserGroupCms.Controllers
 			MembershipService = service ?? new AccountMembershipService();
 		}
 
-		public IFormsAuthentication FormsAuth
-		{
-			get;
-			private set;
-		}
+		public IFormsAuthentication FormsAuth { get; private set; }
 
-		public IMembershipService MembershipService
-		{
-			get;
-			private set;
-		}
+		public IMembershipService MembershipService { get; private set; }
 
 		public ActionResult LogOn()
 		{
-
 			return View();
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-				Justification = "Needs to take same parameter type as Controller.Redirect()")]
+		[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+			Justification = "Needs to take same parameter type as Controller.Redirect()")]
 		public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
 		{
-
 			if (!ValidateLogOn(userName, password))
 			{
 				return View();
@@ -74,7 +59,6 @@ namespace UserGroupCms.Controllers
 
 		public ActionResult LogOff()
 		{
-
 			FormsAuth.SignOut();
 
 			return RedirectToAction("Index", "Home");
@@ -82,7 +66,6 @@ namespace UserGroupCms.Controllers
 
 		public ActionResult Register()
 		{
-
 			ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
 			return View();
@@ -91,7 +74,6 @@ namespace UserGroupCms.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Register(string userName, string email, string password, string confirmPassword)
 		{
-
 			ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
 			if (ValidateRegistration(userName, email, password, confirmPassword))
@@ -117,7 +99,6 @@ namespace UserGroupCms.Controllers
 		[Authorize]
 		public ActionResult ChangePassword()
 		{
-
 			ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
 			return View();
@@ -125,11 +106,10 @@ namespace UserGroupCms.Controllers
 
 		[Authorize]
 		[AcceptVerbs(HttpVerbs.Post)]
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
-				Justification = "Exceptions result in password not being changed.")]
+		[SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+			Justification = "Exceptions result in password not being changed.")]
 		public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
 		{
-
 			ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
 			if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
@@ -158,7 +138,6 @@ namespace UserGroupCms.Controllers
 
 		public ActionResult ChangePasswordSuccess()
 		{
-
 			return View();
 		}
 
@@ -181,9 +160,9 @@ namespace UserGroupCms.Controllers
 			if (newPassword == null || newPassword.Length < MembershipService.MinPasswordLength)
 			{
 				ModelState.AddModelError("newPassword",
-						String.Format(CultureInfo.CurrentCulture,
-								 "You must specify a new password of {0} or more characters.",
-								 MembershipService.MinPasswordLength));
+				                         String.Format(CultureInfo.CurrentCulture,
+				                                       "You must specify a new password of {0} or more characters.",
+				                                       MembershipService.MinPasswordLength));
 			}
 
 			if (!String.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
@@ -225,9 +204,9 @@ namespace UserGroupCms.Controllers
 			if (password == null || password.Length < MembershipService.MinPasswordLength)
 			{
 				ModelState.AddModelError("password",
-						String.Format(CultureInfo.CurrentCulture,
-								 "You must specify a password of {0} or more characters.",
-								 MembershipService.MinPasswordLength));
+				                         String.Format(CultureInfo.CurrentCulture,
+				                                       "You must specify a password of {0} or more characters.",
+				                                       MembershipService.MinPasswordLength));
 			}
 			if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
 			{
@@ -264,15 +243,19 @@ namespace UserGroupCms.Controllers
 					return "The user name provided is invalid. Please check the value and try again.";
 
 				case MembershipCreateStatus.ProviderError:
-					return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+					return
+						"The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
 				case MembershipCreateStatus.UserRejected:
-					return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+					return
+						"The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
 				default:
-					return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+					return
+						"An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 			}
 		}
+
 		#endregion
 	}
 
@@ -289,14 +272,19 @@ namespace UserGroupCms.Controllers
 
 	public class FormsAuthenticationService : IFormsAuthentication
 	{
+		#region IFormsAuthentication Members
+
 		public void SignIn(string userName, bool createPersistentCookie)
 		{
 			FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
 		}
+
 		public void SignOut()
 		{
 			FormsAuthentication.SignOut();
 		}
+
+		#endregion
 	}
 
 	public interface IMembershipService
@@ -310,7 +298,7 @@ namespace UserGroupCms.Controllers
 
 	public class AccountMembershipService : IMembershipService
 	{
-		private MembershipProvider _provider;
+		private readonly MembershipProvider _provider;
 
 		public AccountMembershipService()
 			: this(null)
@@ -322,12 +310,11 @@ namespace UserGroupCms.Controllers
 			_provider = provider ?? Membership.Provider;
 		}
 
+		#region IMembershipService Members
+
 		public int MinPasswordLength
 		{
-			get
-			{
-				return _provider.MinRequiredPasswordLength;
-			}
+			get { return _provider.MinRequiredPasswordLength; }
 		}
 
 		public bool ValidateUser(string userName, string password)
@@ -347,5 +334,7 @@ namespace UserGroupCms.Controllers
 			MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
 			return currentUser.ChangePassword(oldPassword, newPassword);
 		}
+
+		#endregion
 	}
 }

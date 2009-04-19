@@ -19,7 +19,7 @@ namespace UserGroupCms.Models
 		public IList<Person> Speakers { get; set; }
 
 		[HasAndBelongsToMany(Table = "EventSponsors", ColumnKey="eventid", ColumnRef="sponsorid")]
-		public IList<Sponsor> Sponsors { get; set; }
+		public IList<Company> Sponsors { get; set; }
 
 		[Property]
 		public string Summary { get; set; }

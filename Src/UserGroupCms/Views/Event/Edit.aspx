@@ -40,8 +40,12 @@
                 <%= Html.ValidationMessage("ArtifactsUrl", "*") %>
             </p>
             <p>
-						 <label for="Sponsord">Id:</label>
-							<%=Html.ListBox("Sponsors", new MultiSelectList(ViewData["Sponsors"] as IList<UserGroupCms.Models.Sponsor>, "Id", "Name")) %>
+						 <label for="Sponsors">Sponsors:</label>
+							<%=Html.ListBox("Sponsors", new MultiSelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name")) %>
+            </p>
+            <p>
+						 <label for="Speakers">Speakers:</label>
+							<%=Html.ListBox("Speakers", new MultiSelectList(ViewData["Speakers"] as IList<UserGroupCms.Models.Person>, "Id", "Name")) %>
             </p>
             <p>
                 <input type="submit" value="Save" />

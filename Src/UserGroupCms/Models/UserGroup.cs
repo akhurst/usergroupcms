@@ -15,6 +15,7 @@ namespace UserGroupCms.Models
 		[Property]
 		public string ShortName { get; set; }
 
-
+		[Property]
+		public string WelcomeMessage { get; set; }
 	}
 }

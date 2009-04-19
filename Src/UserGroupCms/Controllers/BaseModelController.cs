@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Castle.ActiveRecord;
 using UserGroupCms.Models;
 
 namespace UserGroupCms.Controllers
@@ -27,7 +26,7 @@ namespace UserGroupCms.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public virtual ActionResult Edit(T model)
 		{
-			model.SaveAndFlush();
+			model.SaveAndFlush(UserGroup);
 			return RedirectToAction("List");
 		}
 
@@ -39,12 +38,12 @@ namespace UserGroupCms.Controllers
 
 		protected virtual IList<T> FindAll()
 		{
-			return ActiveRecordBase<T>.FindAll();
+			return AbstractModel<T>.FindAll();
 		}
 
 		protected virtual T Find(int id)
 		{
-			return ActiveRecordBase<T>.Find(id);
+			return AbstractModel<T>.Find(id);
 		}
 
 		protected virtual T CreateNew()

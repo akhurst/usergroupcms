@@ -35,7 +35,7 @@ namespace UserGroupCms
 			ActiveRecordStarter.Initialize(source,
 				typeof(UserGroup),
 				typeof(Event),
-				typeof(Sponsor),
+				typeof(Company),
 				typeof(Person));
 		}
 	}

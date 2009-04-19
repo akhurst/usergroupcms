@@ -1,3 +1,4 @@
+<%@ Import Namespace="UserGroupCms.Models"%>
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -5,6 +6,7 @@
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="<%= string.Format("../../Content/{0}.css",((UserGroup)ViewData["Group]).ShortName)%>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -12,7 +14,7 @@
 
         <div id="header">
             <div id="title">
-                <h1>My MVC Application</h1>
+                <h1><%= ViewData.ContainsKey("Group") ? ((UserGroup)ViewData["Group"]).Name : "Unknown Group!" %></h1>
             </div>
               
             <div id="logindisplay">

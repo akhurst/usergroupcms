@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Castle.ActiveRecord;
+﻿using Castle.ActiveRecord;
 
 namespace UserGroupCms.Models
 {
@@ -15,13 +11,16 @@ namespace UserGroupCms.Models
 		[Property]
 		public string Url { get; set; }
 
-		[Property]
-		public string CompanyName { get; set; }
-
 		[BelongsTo]
-		public Sponsor Company { get; set; }
+		public Company Company { get; set; }
 
 		[Property]
 		public string Bio { get; set; }
+
+		[Property]
+		public string ImagePath { get; set; }
+
+		[Property]
+		public string CompanyName { get; set; }
 	}
 }
