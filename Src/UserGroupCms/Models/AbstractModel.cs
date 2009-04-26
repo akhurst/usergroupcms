@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Castle.ActiveRecord;
+using NHibernate.Expression;
 
 namespace UserGroupCms.Models
 {
@@ -51,6 +52,16 @@ namespace UserGroupCms.Models
 		public static IList<T> FindAll(int userGroupId)
 		{
 			return FindAllByProperty("UserGroupId", userGroupId);
+		}
+
+		public static IList<T> FindAllByProperty(UserGroup userGroup, string propertyName, object value)
+		{
+			return FindAllByProperty(userGroup.Id.Value, propertyName, value);
+		}
+
+		public static IList<T> FindAllByProperty(int userGroupId, string propertyName, object value)
+		{
+			return FindAll(new EqExpression("UserGroupId", userGroupId), new EqExpression(propertyName, value));
 		}
 	}
 }

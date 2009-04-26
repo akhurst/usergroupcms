@@ -1,4 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using UserGroupCms.Models;
+using UserGroupCms.Models.Contexts;
 
 namespace UserGroupCms.Controllers
 {
@@ -7,16 +12,21 @@ namespace UserGroupCms.Controllers
 	{
 		public ActionResult Index()
 		{
-			InitializeContext();
-			
+			HomeContext homeContext = new HomeContext();
+			homeContext.Group = UserGroup;
+			homeContext.Sponsors = Company.FindAllByProperty(UserGroup, "HomePage", true);
+			homeContext.SpecialContent = SpecialContent.FindAll(UserGroup);
+			var futureEvents = from ev in Event.FindAll(UserGroup)
+			                   where ev.Date >= DateTime.Today
+			                   select ev;
 
+			homeContext.FutureEvents = futureEvents.ToList();
 
-			return View();
+			return View(homeContext);
 		}
 
 		public ActionResult About()
 		{
-			InitializeContext();
 			return View();
 		}
 	}

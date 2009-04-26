@@ -19,20 +19,24 @@ namespace UserGroupCms.Controllers
 
 		public virtual ActionResult Edit(int? id)
 		{
-			InitializeContext();
+			//if (!User.IsInRole("admin"))
+			//  RedirectToAction("List");
+
 			return View(ResolveModel(id));
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
 		public virtual ActionResult Edit(T model)
 		{
+			//if (!User.IsInRole("admin"))
+			//  RedirectToAction("List");
+
 			model.SaveAndFlush(UserGroup);
 			return RedirectToAction("List");
 		}
 
 		public virtual ActionResult List()
 		{
-			InitializeContext();
 			return View(FindAll());
 		}
 

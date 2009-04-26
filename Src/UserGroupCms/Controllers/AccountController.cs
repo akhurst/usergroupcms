@@ -8,7 +8,7 @@ using System.Web.Security;
 namespace UserGroupCms.Controllers
 {
 	[HandleError]
-	public class AccountController : Controller
+	public class AccountController : BaseController
 	{
 		// This constructor is used by the MVC framework to instantiate the controller using
 		// the default forms authentication and membership providers.
@@ -24,6 +24,8 @@ namespace UserGroupCms.Controllers
 		public AccountController(IFormsAuthentication formsAuth, IMembershipService service)
 		{
 			FormsAuth = formsAuth ?? new FormsAuthenticationService();
+			//MembershipProvider membershipProvider = Membership.Provider;
+			//MembershipService = service ?? new AccountMembershipService(membershipProvider);
 			MembershipService = service ?? new AccountMembershipService();
 		}
 
@@ -147,6 +149,8 @@ namespace UserGroupCms.Controllers
 			{
 				throw new InvalidOperationException("Windows authentication is not supported.");
 			}
+
+			base.OnActionExecuting(filterContext);
 		}
 
 		#region Validation Methods

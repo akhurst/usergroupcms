@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using Castle.ActiveRecord;
 
@@ -29,5 +30,23 @@ namespace UserGroupCms.Models
 
 		[Property]
 		public string ArtifactsUrl { get; set; }
+
+		public string SpeakersString
+		{
+			get
+			{
+				StringBuilder sb = new StringBuilder();
+
+				foreach (Person person in Speakers)
+				{
+					if (sb.Length > 0)
+						sb.Append(", ");
+
+					sb.Append(person.Name);
+				}
+
+				return sb.ToString();
+			}
+		}
 	}
 }

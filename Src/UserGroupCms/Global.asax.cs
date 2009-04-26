@@ -36,7 +36,13 @@ namespace UserGroupCms
 				typeof(UserGroup),
 				typeof(Event),
 				typeof(Company),
-				typeof(Person));
+				typeof(Person),
+				typeof(SpecialContent));
+		}
+
+		protected void Application_BeginRequest()
+		{
+			
 		}
 	}
 }

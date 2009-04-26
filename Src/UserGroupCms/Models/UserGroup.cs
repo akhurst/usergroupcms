@@ -10,6 +10,9 @@ namespace UserGroupCms.Models
 	public class UserGroup : AbstractModel<UserGroup>
 	{
 		[Property]
+		public string LogoUrl { get; set; }
+
+		[Property]
 		public string Name { get; set; }
 
 		[Property]
@@ -17,5 +20,8 @@ namespace UserGroupCms.Models
 
 		[Property]
 		public string WelcomeMessage { get; set; }
+
+		[Property]
+		public bool Inactive { get; set; }
 	}
 }

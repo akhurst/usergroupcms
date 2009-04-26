@@ -20,5 +20,8 @@ namespace UserGroupCms.Models
 
 		[Property]
 		public string Description { get; set; }
+
+		[Property]
+		public bool HomePage { get; set; }
 	}
 }

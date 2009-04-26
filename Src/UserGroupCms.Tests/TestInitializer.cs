@@ -41,7 +41,8 @@ namespace UserGroupCms.Tests
 				typeof(UserGroup),
 				typeof(Event),
 				typeof(Person),
-				typeof(Company));
+				typeof(Company),
+				typeof(SpecialContent));
 		}
 	}
 }

@@ -35,5 +35,12 @@ namespace UserGroupCms.Controllers
 			if (UserGroup != null)
 				ViewData["Group"] = UserGroup;
 		}
+
+		protected override void OnActionExecuting(ActionExecutingContext filterContext)
+		{
+			base.OnActionExecuting(filterContext);
+
+			InitializeContext();
+		}
 	}
 }

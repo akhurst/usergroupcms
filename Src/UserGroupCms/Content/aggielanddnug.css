@@ -1,3 +1,98 @@
 ﻿body
 {
+    background-color: #FFFFFF; /* to adjust the margin and header colors */
+    font-size: .75em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+h3
+{
+		background-color: #5f574f;
+    font-size: 1.2em;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #5f574f;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+#main
+{
+		border: solid 3px #500000; /* change this value to change the page border (the border around the main content area) */
+    padding: 30px 30px 15px 30px;
+    background-color: #fff;
+    margin-bottom: 30px;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
+}
+
+ul#menu
+{
+    /*border-bottom: 1px #5C87B2 solid;*/ /* uncomment this to add a border to the top menu */
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: right;
+}
+
+ul#menu li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #500000; /* change this value to change the background color of the top menu "tabs" */
+    color: #ffffff; /*change this value to change the text color of the top menu items */
+}
+
+#menucontainer
+{
+    margin-top:105px; /* Adjust the height of the mast-head (header) here */
+}
+
+div#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+    margin-top: 5px;
+}
+
+#logindisplay
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:10px;
+    color: #5f574f;
+}
+
+.welcomemessage
+{
+}
+
+.eventlist
+{
+}
+
+.event-description
+{
+}
+
+.contactinformation
+{
+}
+
+.rightside
+{
+	float: right;
 }

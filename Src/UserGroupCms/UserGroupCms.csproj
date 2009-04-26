@@ -71,6 +71,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\SpecialContentController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -83,7 +84,8 @@
     <Compile Include="Models\Contexts\HomeContext.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Sponsor.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\SpecialContent.cs" />
     <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +103,8 @@
     <Content Include="Views\Person\List.aspx" />
     <Content Include="Views\Company\Edit.aspx" />
     <Content Include="Views\Company\List.aspx" />
+    <Content Include="Views\SpecialContent\Edit.aspx" />
+    <Content Include="Views\SpecialContent\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
