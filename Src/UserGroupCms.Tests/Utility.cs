@@ -25,13 +25,17 @@ namespace UserGroupCms.Tests
 			                    {
 			                    	Name = "Improving Enterprises",
 			                    	Url = "http://improvingenterprises.com",
-			                    	LogoUrl = "../../Content/images/improving.png",
+			                    	LogoUrl = "../../Content/images/improving200.png",
 			                    	HomePage = true
 			                    };
 			improving.CreateAndFlush(group);
 
 			Company tamu = new Company
-			               {Name = "Texas A&M University", Url = "http://www.tamu.edu", LogoUrl = "../../Content/images/tamu.png"};
+			               {Name = "Texas A&M University", Url = "http://www.tamu.edu", LogoUrl = "../../Content/images/aggieLogo.png", HomePage=true};
+
+			new Company {Name = "DevExpress", Url = "http://www.devexpress.com", LogoUrl = "../../Content/images/devexpress.png"}.CreateAndFlush();
+			new Company { Name = "O'Reilly", Url = "http://www.oreilly.com", LogoUrl = "../../Content/images/oreilly.png" }.CreateAndFlush();
+
 			tamu.CreateAndFlush(group);
 
 			Person allen = new Person {Name = "Allen Hurst", Company = improving, Url = "http://ahurst.com"};

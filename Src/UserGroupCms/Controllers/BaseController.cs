@@ -42,5 +42,26 @@ namespace UserGroupCms.Controllers
 
 			InitializeContext();
 		}
+
+		protected bool UserIsLoggedIn()
+		{
+			if (User == null || User.Identity == null || string.IsNullOrEmpty(User.Identity.Name))
+				return false;
+			else
+				return true;
+		}
+
+		protected bool UserIsAdmin()
+		{
+			if(!UserIsLoggedIn())
+				return false;
+
+			IList<Account> accounts = Account.FindAllByProperty(UserGroup, "OpenId", User.Identity.Name);
+
+			if(accounts.Count != 1 || !accounts[0].Admin)
+				return false;
+
+			return true;
+		}
 	}
 }

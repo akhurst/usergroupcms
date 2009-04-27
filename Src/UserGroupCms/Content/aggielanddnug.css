@@ -1,57 +1,51 @@
-﻿body
+﻿/* OVERRIDDEN STYLES FROM Site.css */
+
+body
 {
     background-color: #FFFFFF; /* to adjust the margin and header colors */
-    font-size: .75em;
-    font-family: Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
-    color: #696969;
 }
 
 h3
 {
+	padding: 3px;
+	color: #ffffff;
 		background-color: #5f574f;
-    font-size: 1.2em;
 }
 
 #header h1
 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
     color: #5f574f;
-    border: none;
-    line-height: 2em;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px !important;
+}
+
+h4
+{
+	margin: 3px 3px 3px 0px;
+}
+
+h5
+{
+	margin: 3px 3px 3px 0px;
 }
 
 #main
 {
 		border: solid 3px #500000; /* change this value to change the page border (the border around the main content area) */
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
 
 ul#menu
 {
-    /*border-bottom: 1px #5C87B2 solid;*/ /* uncomment this to add a border to the top menu */
-    padding: 0 0 2px;
-    position: relative;
-    margin: 0;
-    text-align: right;
+	border-bottom: none;
 }
 
 ul#menu li a
 {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
     background-color: #500000; /* change this value to change the background color of the top menu "tabs" */
     color: #ffffff; /*change this value to change the text color of the top menu items */
+}
+
+ul#menu li a:hover
+{
+    background-color: #5f574f;
 }
 
 #menucontainer
@@ -61,20 +55,30 @@ ul#menu li a
 
 div#title
 {
-    display:block;
-    float:left;
-    text-align:left;
     margin-top: 5px;
 }
 
 #logindisplay
 {
-    font-size:1.1em;
-    display:block;
-    text-align:right;
-    margin:10px;
     color: #5f574f;
 }
+
+#logindisplay a:link
+{
+    color: #5f574f;
+}
+
+#logindisplay a:visited
+{
+    color: #5f574f;
+}
+
+#logindisplay a:hover
+{
+    color: #8f877f;
+}
+
+/* END OVERRIDDEN STYLES */
 
 .welcomemessage
 {
@@ -86,13 +90,56 @@ div#title
 
 .event-description
 {
+
 }
 
 .contactinformation
 {
 }
 
+.indexcontent
+{
+	width: 100%;
+}
+
+.leftside
+{
+	vertical-align: top;
+	border: none;
+	width: auto;
+}
+
 .rightside
 {
-	float: right;
+	vertical-align: top;
+	border: none;
+	width: 250px;
+}
+
+a.imagelink
+{
+	border: none;
+	color: #ffffff;
+}
+
+input.openidinput
+{
+	margin:5px 0;
+	height: 28px; 
+	padding: 3px 3px 3px 30px; 
+	border:1px solid #999999;
+	font-family:Trebuchet MS,Helvetica,sans-serif;
+	font-size:100%;	
+	background:transparent url(../../Content/images/openid-large.png) no-repeat scroll left center;
+}
+
+input.loginbutton
+{
+	height:36px;
+	top: 10px;
+	margin: 5px 0px 0px 5px;
+	padding:3px;
+	border:1px solid #999999;
+	font-family:Trebuchet MS,Helvetica,sans-serif;
+	font-size:100%;
 }

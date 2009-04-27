@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Security;
+using DotNetOpenId;
+using DotNetOpenId.RelyingParty;
+using UserGroupCms.Models;
 
 namespace UserGroupCms.Controllers
 {
@@ -17,6 +21,137 @@ namespace UserGroupCms.Controllers
 			: this(null, null)
 		{
 		}
+
+		//public ActionResult Index()
+		//{
+		//  if (!User.Identity.IsAuthenticated) Response.Redirect("/User/Login?ReturnUrl=Index");
+		//  return View("Index");
+		//}
+		//public ActionResult Logout()
+		//{
+		//  FormsAuthentication.SignOut();
+		//  return Redirect("/Home");
+		//}
+		//public ActionResult Login()
+		//{
+		//  // Stage 1: display login form to user
+		//  return View("Login");
+		//}
+		//public ActionResult Authenticate()
+		//{
+		//  var openid = new OpenIdRelyingParty();
+		//  if (openid.Response == null)
+		//  {
+		//    // Stage 2: user submitting Identifier
+		//    Identifier id;
+		//    if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
+		//    {
+		//      openid.CreateRequest(Request.Form["openid_identifier"]).RedirectToProvider();
+		//    }
+		//    else
+		//    {
+		//      ViewData["Message"] = "Invalid identifier";
+		//      return View("Login");
+		//    }
+		//  }
+		//  else
+		//  {
+		//    // Stage 3: OpenID Provider sending assertion response
+		//    switch (openid.Response.Status)
+		//    {
+		//      case AuthenticationStatus.Authenticated:
+		//        FormsAuthentication.RedirectFromLoginPage(openid.Response.ClaimedIdentifier, false);
+		//        break;
+		//      case AuthenticationStatus.Canceled:
+		//        ViewData["Message"] = "Canceled at provider";
+		//        return View("Login");
+		//      case AuthenticationStatus.Failed:
+		//        ViewData["Message"] = openid.Response.Exception.Message;
+		//        return View("Login");
+		//    }
+		//  }
+		//  return new EmptyResult();
+		//}
+
+		#region OpenID
+
+		public ActionResult LogOn()
+		{
+			return View("OpenIdLogOn");
+		}
+
+		[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+			Justification = "Needs to take same parameter type as Controller.Redirect()")]
+		public ActionResult Authenticate()
+		{
+			var openIdString = Request.Form["openid"];
+			var openid = new OpenIdRelyingParty();
+			if (openid.Response == null)
+			{
+				// Stage 2: user submitting Identifier
+				Identifier id;
+				if (Identifier.TryParse(openIdString, out id))
+				{
+					openid.CreateRequest(openIdString).RedirectToProvider();
+				}
+				else
+				{
+					ModelState.AddModelError("openid", "Invalid OpenID.");
+					return View("OpenIdLogOn");
+				}
+			}
+			else
+			{
+				// Stage 3: OpenID Provider sending assertion response
+				switch (openid.Response.Status)
+				{
+					case AuthenticationStatus.Authenticated:
+
+						IList<Account> users =  Models.Account.FindAllByProperty(UserGroup, "OpenId", openid.Response.ClaimedIdentifier.ToString());
+
+						if(users.Count > 1)
+						{
+							ModelState.AddModelError("_FORM", "This user is in the database more than once, this shouldn't happen.");
+							return View("OpenIdLogOn");
+						}
+						else if(users.Count == 0)
+						{
+							//_country = (Request.QueryString["openid.sreg.country"] ?? "");
+							//_dayOfBirth = (Request.QueryString["openid.sreg.dob"] ?? "");
+							//_email = (Request.QueryString["openid.sreg.email"] ?? "");
+							//_fullname = (Request.QueryString["openid.sreg.fullname"] ?? "");
+							//_gender = (Request.QueryString["openid.sreg.gender"] ?? "");
+							//_language = (Request.QueryString["openid.sreg.language"] ?? "");
+							//_nickname = (Request.QueryString["openid.sreg.nickname"] ?? "");
+							//_postcode = (Request.QueryString["openid.sreg.postcode"] ?? "");
+							//_timezone = (Request.QueryString["openid.sreg.timezone"] ?? "");
+
+							new Account {OpenId = openid.Response.ClaimedIdentifier.ToString()}.CreateAndFlush(UserGroup);
+						}
+
+						FormsAuthentication.RedirectFromLoginPage(openid.Response.ClaimedIdentifier, false);
+						break;
+					case AuthenticationStatus.Canceled:
+						ModelState.AddModelError("_FORM", "Login canceled by provider.");
+						return View("OpenIdLogOn");
+					case AuthenticationStatus.Failed:
+						ModelState.AddModelError("_FORM", openid.Response.Exception.Message);
+						return View("OpenIdLogOn");
+				}
+			}
+			return new EmptyResult();
+		}
+
+		public ActionResult LogOff()
+		{
+			FormsAuth.SignOut();
+
+			return RedirectToAction("Index", "Home");
+		}
+
+		#endregion
+
+		#region ASP.NET Membership
 
 		// This constructor is not used by the MVC framework but is instead provided for ease
 		// of unit testing this type. See the comments at the end of this file for more
@@ -33,38 +168,38 @@ namespace UserGroupCms.Controllers
 
 		public IMembershipService MembershipService { get; private set; }
 
-		public ActionResult LogOn()
-		{
-			return View();
-		}
+		//public ActionResult LogOn()
+		//{
+		//  return View();
+		//}
 
-		[AcceptVerbs(HttpVerbs.Post)]
-		[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-			Justification = "Needs to take same parameter type as Controller.Redirect()")]
-		public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
-		{
-			if (!ValidateLogOn(userName, password))
-			{
-				return View();
-			}
+		//[AcceptVerbs(HttpVerbs.Post)]
+		//[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+		//  Justification = "Needs to take same parameter type as Controller.Redirect()")]
+		//public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
+		//{
+		//  if (!ValidateLogOn(userName, password))
+		//  {
+		//    return View();
+		//  }
 
-			FormsAuth.SignIn(userName, rememberMe);
-			if (!String.IsNullOrEmpty(returnUrl))
-			{
-				return Redirect(returnUrl);
-			}
-			else
-			{
-				return RedirectToAction("Index", "Home");
-			}
-		}
+		//  FormsAuth.SignIn(userName, rememberMe);
+		//  if (!String.IsNullOrEmpty(returnUrl))
+		//  {
+		//    return Redirect(returnUrl);
+		//  }
+		//  else
+		//  {
+		//    return RedirectToAction("Index", "Home");
+		//  }
+		//}
 
-		public ActionResult LogOff()
-		{
-			FormsAuth.SignOut();
+		//public ActionResult LogOff()
+		//{
+		//  FormsAuth.SignOut();
 
-			return RedirectToAction("Index", "Home");
-		}
+		//  return RedirectToAction("Index", "Home");
+		//}
 
 		public ActionResult Register()
 		{
@@ -338,6 +473,8 @@ namespace UserGroupCms.Controllers
 			MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
 			return currentUser.ChangePassword(oldPassword, newPassword);
 		}
+
+		#endregion
 
 		#endregion
 	}

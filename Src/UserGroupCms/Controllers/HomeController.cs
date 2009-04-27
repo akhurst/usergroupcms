@@ -15,7 +15,7 @@ namespace UserGroupCms.Controllers
 			HomeContext homeContext = new HomeContext();
 			homeContext.Group = UserGroup;
 			homeContext.Sponsors = Company.FindAllByProperty(UserGroup, "HomePage", true);
-			homeContext.SpecialContent = SpecialContent.FindAll(UserGroup);
+			homeContext.SpecialContent = SpecialContent.FindAllByProperty(UserGroup, "HomePage", true);
 			var futureEvents = from ev in Event.FindAll(UserGroup)
 			                   where ev.Date >= DateTime.Today
 			                   select ev;

@@ -6,15 +6,9 @@ namespace UserGroupCms.Models
 	public class SpecialContent : AbstractModel<SpecialContent>
 	{
 		[Property]
-		public string Title { get; set; }
+		public string Content { get; set; }
 
 		[Property]
-		public string Description { get; set; }
-
-		[Property]
-		public string ImageUrl { get; set; }
-
-		[Property]
-		public string LinkUrl { get; set; }
+		public bool HomePage { get; set; }
 	}
 }

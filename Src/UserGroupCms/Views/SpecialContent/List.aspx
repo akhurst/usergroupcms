@@ -12,16 +12,10 @@
         <tr>
             <th></th>
             <th>
-                Title
+                Content
             </th>
             <th>
-                Description
-            </th>
-            <th>
-                ImageUrl
-            </th>
-            <th>
-                LinkUrl
+                HomePage
             </th>
             <th>
                 Id
@@ -42,16 +36,10 @@
                 <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
             </td>
             <td>
-                <%= Html.Encode(item.Title) %>
+                <%= Html.Encode(item.Content) %>
             </td>
             <td>
-                <%= Html.Encode(item.Description) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.ImageUrl) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.LinkUrl) %>
+                <%= Html.Encode(item.HomePage) %>
             </td>
             <td>
                 <%= Html.Encode(item.Id) %>

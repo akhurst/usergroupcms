@@ -15,24 +15,14 @@
         <fieldset>
             <legend>Fields</legend>
             <p>
-                <label for="Title">Title:</label>
-                <%= Html.TextBox("Title", Model.Title) %>
-                <%= Html.ValidationMessage("Title", "*") %>
+                <label for="Content">Content:</label>
+                <%= Html.TextBox("Content", Model.Content) %>
+                <%= Html.ValidationMessage("Content", "*") %>
             </p>
             <p>
-                <label for="Description">Description:</label>
-                <%= Html.TextBox("Description", Model.Description) %>
-                <%= Html.ValidationMessage("Description", "*") %>
-            </p>
-            <p>
-                <label for="ImageUrl">ImageUrl:</label>
-                <%= Html.TextBox("ImageUrl", Model.ImageUrl) %>
-                <%= Html.ValidationMessage("ImageUrl", "*") %>
-            </p>
-            <p>
-                <label for="LinkUrl">LinkUrl:</label>
-                <%= Html.TextBox("LinkUrl", Model.LinkUrl) %>
-                <%= Html.ValidationMessage("LinkUrl", "*") %>
+                <label for="HomePage">HomePage:</label>
+                <%= Html.TextBox("HomePage", Model.HomePage) %>
+                <%= Html.ValidationMessage("HomePage", "*") %>
             </p>
             <p>
                 <label for="Id">Id:</label>

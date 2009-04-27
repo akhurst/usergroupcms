@@ -5,7 +5,7 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #FFFFFF; /* to adjust the margin and header colors */
+    background-color: #5c87b2;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -59,7 +59,6 @@ h2
 }
 h3
 {
-		background-color: #5f574f;
     font-size: 1.2em;
 }
 h4
@@ -103,7 +102,7 @@ page width. Or, you can specify an exact pixel width. */
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #5f574f;
+    color: #fff;
     border: none;
     line-height: 2em;
     font-family: Arial, Helvetica, sans-serif;
@@ -112,7 +111,6 @@ page width. Or, you can specify an exact pixel width. */
 
 #main
 {
-		border: solid 3px #500000; /* change this value to change the page border (the border around the main content area) */
     padding: 30px 30px 15px 30px;
     background-color: #fff;
     margin-bottom: 30px;
@@ -133,7 +131,7 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    /*border-bottom: 1px #5C87B2 solid;*/ /* uncomment this to add a border to the top menu */
+    border-bottom: 1px #5C87B2 solid;
     padding: 0 0 2px;
     position: relative;
     margin: 0;
@@ -161,13 +159,13 @@ ul#menu li a
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    background-color: #500000; /* change this value to change the background color of the top menu "tabs" */
-    color: #ffffff; /*change this value to change the text color of the top menu items */
+    background-color: #e8eef4;
+    color: #034af3;
 }
 
 ul#menu li a:hover
 {
-    background-color: #5f574f;
+    background-color: #fff;
     text-decoration: none;
 }
 
@@ -264,7 +262,7 @@ table th
 
 #menucontainer
 {
-    margin-top:105px; /* Adjust the height of the mast-head (header) here */
+    margin-top:40px;
 }
 
 div#title
@@ -272,7 +270,6 @@ div#title
     display:block;
     float:left;
     text-align:left;
-    margin-top: 5px;
 }
 
 #logindisplay
@@ -281,24 +278,24 @@ div#title
     display:block;
     text-align:right;
     margin:10px;
-    color: #5f574f;
+    color:White;
 }
 
 #logindisplay a:link
 {
-    color: #5f574f;
+    color: white;
     text-decoration: underline;
 }
 
 #logindisplay a:visited
 {
-    color: #5f574f;
+    color: white;
     text-decoration: underline;
 }
 
 #logindisplay a:hover
 {
-    color: #8f877f;
+    color: white;
     text-decoration: none;
 }
 

@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Castle.ActiveRecord.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetOpenId, Version=2.5.4.9045, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\DotNetOpenId.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=1.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\NHibernate.dll</HintPath>
@@ -86,6 +90,7 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\SpecialContent.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +98,7 @@
     <Content Include="Content\aggielanddnug.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\OpenIdLogOn.aspx" />
     <Content Include="Views\Company\Sponsors.aspx" />
     <Content Include="Views\Event\Edit.aspx" />
     <Content Include="Views\Event\History.aspx" />

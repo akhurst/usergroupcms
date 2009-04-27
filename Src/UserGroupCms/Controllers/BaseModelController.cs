@@ -19,8 +19,8 @@ namespace UserGroupCms.Controllers
 
 		public virtual ActionResult Edit(int? id)
 		{
-			//if (!User.IsInRole("admin"))
-			//  RedirectToAction("List");
+			if (!UserIsAdmin())
+				return RedirectToAction("List");
 
 			return View(ResolveModel(id));
 		}
@@ -28,8 +28,8 @@ namespace UserGroupCms.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public virtual ActionResult Edit(T model)
 		{
-			//if (!User.IsInRole("admin"))
-			//  RedirectToAction("List");
+			if (!UserIsAdmin())
+				return RedirectToAction("List");
 
 			model.SaveAndFlush(UserGroup);
 			return RedirectToAction("List");
