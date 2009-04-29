@@ -34,7 +34,7 @@
 						
 						<% foreach(Company company in Model.Sponsors) { %>
 							
-							<a href="<%= company.Url %>" class="imagelink"><img src="<%= company.LogoUrl %>" alt="<%=company.Name %>" /></a>
+							<a href="<%= company.Url %>"><img src="<%= company.LogoUrl %>" alt="<%=company.Name %>" /></a>
 							&nbsp;&nbsp;&nbsp;
 						
 						<% } %>

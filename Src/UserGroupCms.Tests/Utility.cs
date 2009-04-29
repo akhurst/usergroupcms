@@ -14,6 +14,13 @@ namespace UserGroupCms.Tests
 		}
 
 		[Test, Explicit]
+		public void DumpScript()
+		{
+			CreateAndFill();
+			TestInitializer.DumpSchema();
+		}
+
+		[Test, Explicit]
 		public void CreateAndFill()
 		{
 			TestInitializer.Initialize();
@@ -31,7 +38,7 @@ namespace UserGroupCms.Tests
 			improving.CreateAndFlush(group);
 
 			Company tamu = new Company
-			               {Name = "Texas A&M University", Url = "http://www.tamu.edu", LogoUrl = "../../Content/images/aggieLogo.png", HomePage=true};
+			               {Name = "Texas A&M University", Url = "http://www.tamu.edu", LogoUrl = "../../Content/images/primaryWhiteMaroon.jpg", HomePage=true};
 
 			new Company {Name = "DevExpress", Url = "http://www.devexpress.com", LogoUrl = "../../Content/images/devexpress.png"}.CreateAndFlush();
 			new Company { Name = "O'Reilly", Url = "http://www.oreilly.com", LogoUrl = "../../Content/images/oreilly.png" }.CreateAndFlush();
@@ -45,8 +52,13 @@ namespace UserGroupCms.Tests
 			new Person {Name = "Dan Cary", Company = tamu}.CreateAndFlush(group);
 			new Person {Name = "Robert Stackhouse", Company = tamu, Url = "http://robertstackhouse.com" }.CreateAndFlush(group);
 
+			// Add special content for o'reilly user group
+			// add special content for twitter feed
+
 			new Event
 			{Date = DateTime.Today.AddDays(1), Title = "Test Event", Speakers = new[] {allen}, Summary = "This is a test event", Sponsors = new[]{improving}}.CreateAndFlush(group);
+
+			new Account {Admin = true, OpenId = "http://ahurst.com/"}.CreateAndFlush(group);
 		}
 	}
 }

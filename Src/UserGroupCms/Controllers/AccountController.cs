@@ -82,6 +82,7 @@ namespace UserGroupCms.Controllers
 
 		[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
 			Justification = "Needs to take same parameter type as Controller.Redirect()")]
+		[HandleError]
 		public ActionResult Authenticate()
 		{
 			var openIdString = Request.Form["openid"];
@@ -89,12 +90,20 @@ namespace UserGroupCms.Controllers
 			if (openid.Response == null)
 			{
 				// Stage 2: user submitting Identifier
-				Identifier id;
-				if (Identifier.TryParse(openIdString, out id))
+				try
 				{
-					openid.CreateRequest(openIdString).RedirectToProvider();
+					Identifier id;
+					if (Identifier.TryParse(openIdString, out id))
+					{
+						openid.CreateRequest(id).RedirectToProvider();
+					}
+					else
+					{
+						ModelState.AddModelError("openid", "Invalid OpenID.");
+						return View("OpenIdLogOn");
+					}
 				}
-				else
+				catch (Exception)
 				{
 					ModelState.AddModelError("openid", "Invalid OpenID.");
 					return View("OpenIdLogOn");

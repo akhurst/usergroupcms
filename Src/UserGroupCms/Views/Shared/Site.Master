@@ -21,7 +21,7 @@
 
         <div id="header">
             <div id="title">
-                <img src="<%= group.LogoUrl %>" alt="<%= group.Name %>"/>
+                <a href="../../"><img src="<%= group.LogoUrl %>" alt="<%= group.Name %>"/></a>
             </div>
               
             <div id="logindisplay">

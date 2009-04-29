@@ -15,10 +15,9 @@
     <% using (Html.BeginForm("Authenticate", "Account")) { %>
         <div>
             <fieldset>
-                <legend>OpenID</legend>
                 <p>
 									<label for="openid">OpenID:</label>
-									<input type="text" name="openid" id="openid" size="53" class="openidinput" />
+									<input type="text" name="openid" id="openid" class="openidinput" />
 									<input type="submit" value="Login" class="loginbutton" />
 									<%= Html.ValidationMessage("openid") %>
                 </p>
