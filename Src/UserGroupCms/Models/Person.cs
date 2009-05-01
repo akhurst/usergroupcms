@@ -9,7 +9,10 @@ namespace UserGroupCms.Models
 		public string Name { get; set; }
 
 		[Property]
-		public string Url { get; set; }
+		public string BlogUrl { get; set; }
+
+		[Property]
+		public string Url2 { get; set; }
 
 		[BelongsTo]
 		public Company Company { get; set; }

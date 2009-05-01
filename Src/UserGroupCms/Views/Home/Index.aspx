@@ -11,7 +11,7 @@
 		<tr>
 			<td class="leftside">				
 					<div class="welcomemessage">
-						<h2><%= Html.Encode(Model.Group.WelcomeMessage) %></h2>
+						<h2><%=Model.Group.WelcomeMessage%></h2>
 					</div>
 			    
 					<div class="eventlist">
@@ -57,7 +57,7 @@
 						<% foreach(SpecialContent content in Model.SpecialContent) { %>
 							
 							<div class="rightside-specialcontent">
-								<%= Html.Encode(content.Content) %>
+								<%= content.Content %>
 							</div>
 						
 						<% } %>

@@ -17,6 +17,7 @@ namespace UserGroupCms.Tests
 				initialized = true;
 			}
 
+			ActiveRecordStarter.DropSchema();
 			ActiveRecordStarter.CreateSchema();
 		}
 

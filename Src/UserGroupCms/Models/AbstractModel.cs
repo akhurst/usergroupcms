@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Castle.ActiveRecord;
-using NHibernate.Expression;
+using NHibernate.Criterion;
 
 namespace UserGroupCms.Models
 {
@@ -61,7 +61,7 @@ namespace UserGroupCms.Models
 
 		public static IList<T> FindAllByProperty(int userGroupId, string propertyName, object value)
 		{
-			return FindAll(new EqExpression("UserGroupId", userGroupId), new EqExpression(propertyName, value));
+			return FindAll(Restrictions.Eq("UserGroupId", userGroupId), Restrictions.Eq(propertyName, value));
 		}
 	}
 }

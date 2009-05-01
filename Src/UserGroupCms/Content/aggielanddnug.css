@@ -117,6 +117,11 @@ div#title
 	width: 25%;
 }
 
+.rightside-specialcontent
+{
+	text-align: right;
+}
+
 a:link img, a:visited img {
     border: none;
 }
