@@ -7,7 +7,9 @@ namespace UserGroupCms.Controllers
 	public abstract class BaseController : Controller
 	{
 		private UserGroup userGroup;
+		private Account userAccount;
 		private bool userGroupLookupFailed;
+		private bool userAccountLookupFailed;
 
 		protected UserGroup UserGroup
 		{
@@ -27,13 +29,34 @@ namespace UserGroupCms.Controllers
 			}
 		}
 
+		protected Account UserAccount
+		{
+			get
+			{
+				if(!UserIsLoggedIn())
+					return null;
+
+				if (userAccount == null && !userAccountLookupFailed)
+				{
+					IList<Account> accounts = Account.FindAllByProperty(UserGroup, "OpenId", User.Identity.Name);
+
+					if (accounts!=null && accounts.Count == 1)
+						userAccount = accounts[0];
+					else
+						userAccountLookupFailed = true;
+				}
+
+				return userAccount;
+			}
+		}
+
 		protected virtual void InitializeContext()
 		{
-			if (ViewData["Group"] != null)
-				return;
-
-			if (UserGroup != null)
+			if (ViewData["Group"]==null && UserGroup != null)
 				ViewData["Group"] = UserGroup;
+
+			if (ViewData["UserAccount"]==null && UserAccount != null)
+				ViewData["UserAccount"] = UserAccount;
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -53,15 +76,10 @@ namespace UserGroupCms.Controllers
 
 		protected bool UserIsAdmin()
 		{
-			if(!UserIsLoggedIn())
+			if (UserAccount == null)
 				return false;
-
-			IList<Account> accounts = Account.FindAllByProperty(UserGroup, "OpenId", User.Identity.Name);
-
-			if(accounts.Count != 1 || !accounts[0].Admin)
-				return false;
-
-			return true;
+			else
+				return UserAccount.Admin;
 		}
 	}
 }

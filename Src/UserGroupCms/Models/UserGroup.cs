@@ -18,10 +18,13 @@ namespace UserGroupCms.Models
 		[Property]
 		public string ShortName { get; set; }
 
-		[Property]
+		[Property(Length = 4000)]
 		public string WelcomeMessage { get; set; }
 
 		[Property]
 		public bool Inactive { get; set; }
+
+		[Property(Length = 4000)]
+		public string ContactInfo { get; set; }
 	}
 }

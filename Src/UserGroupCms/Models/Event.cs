@@ -22,14 +22,26 @@ namespace UserGroupCms.Models
 		[HasAndBelongsToMany(Table = "EventSponsors", ColumnKey="eventid", ColumnRef="sponsorid")]
 		public IList<Company> Sponsors { get; set; }
 
-		[Property]
+		[Property(Length = 4000)]
 		public string Summary { get; set; }
 
 		[Property]
-		public string EventLink { get; set; }
+		public string EventLink1Text { get; set; }
+
+		[Property]
+		public string EventLink1Url { get; set; }
+
+		[Property]
+		public string EventLink2Text { get; set; }
+
+		[Property]
+		public string EventLink2Url { get; set; }
 
 		[Property]
 		public string ArtifactsUrl { get; set; }
+
+		[BelongsTo]
+		public Venue Venue { get; set; }
 
 		public string SpeakersString
 		{

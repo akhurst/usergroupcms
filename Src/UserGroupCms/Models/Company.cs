@@ -18,7 +18,7 @@ namespace UserGroupCms.Models
 		[Property]
 		public string Url { get; set; }
 
-		[Property]
+		[Property(Length = 4000)]
 		public string Description { get; set; }
 
 		[Property]

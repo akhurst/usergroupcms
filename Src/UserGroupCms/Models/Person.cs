@@ -1,4 +1,5 @@
-﻿using Castle.ActiveRecord;
+﻿using System.Web;
+using Castle.ActiveRecord;
 
 namespace UserGroupCms.Models
 {
@@ -17,7 +18,7 @@ namespace UserGroupCms.Models
 		[BelongsTo]
 		public Company Company { get; set; }
 
-		[Property]
+		[Property(Length = 4000)]
 		public string Bio { get; set; }
 
 		[Property]

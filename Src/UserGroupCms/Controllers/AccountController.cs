@@ -5,8 +5,8 @@ using System.Globalization;
 using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotNetOpenId;
-using DotNetOpenId.RelyingParty;
+using System.Xml;
+using UserGroupCms.Helpers;
 using UserGroupCms.Models;
 
 namespace UserGroupCms.Controllers
@@ -16,6 +16,10 @@ namespace UserGroupCms.Controllers
 	{
 		// This constructor is used by the MVC framework to instantiate the controller using
 		// the default forms authentication and membership providers.
+
+		private const string RpxApiKey = "317e6b8a4b4c4baf29b8b6e48409f99c042a78a0";
+		private const string RpxBaseUrl = "https://rpxnow.com";
+		private const string RpxLoginFrameUrl = "https://aggielanddnug.rpxnow.com/openid/embed";
 
 		public AccountController()
 			: this(null, null)
@@ -77,79 +81,114 @@ namespace UserGroupCms.Controllers
 
 		public ActionResult LogOn()
 		{
-			return View("OpenIdLogOn");
+			string loginFrameUrl = string.Format("{0}?token_url={1}", RpxLoginFrameUrl, Url.AbsoluteAction("RpxLogOn", "Account"));
+			ViewData["RpxLoginUrl"] = loginFrameUrl;
+			ViewData["RpxApiKey"] = RpxApiKey;
+			return View("RpxLogOn");
 		}
 
-		[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-			Justification = "Needs to take same parameter type as Controller.Redirect()")]
-		[HandleError]
-		public ActionResult Authenticate()
+		public ActionResult RpxLogOn(string token)
 		{
-			var openIdString = Request.Form["openid"];
-			var openid = new OpenIdRelyingParty();
-			if (openid.Response == null)
+			RpxHelper rpxHelper = new RpxHelper(RpxApiKey, RpxBaseUrl);
+
+			XmlElement authInfo = rpxHelper.AuthInfo(token);
+
+			string identifier = RpxHelper.ParseIdentifier(authInfo);
+			string displayName = RpxHelper.ParseDisplayName(authInfo);
+
+			if(identifier == null)
 			{
-				// Stage 2: user submitting Identifier
-				try
-				{
-					Identifier id;
-					if (Identifier.TryParse(openIdString, out id))
-					{
-						openid.CreateRequest(id).RedirectToProvider();
-					}
-					else
-					{
-						ModelState.AddModelError("openid", "Invalid OpenID.");
-						return View("OpenIdLogOn");
-					}
-				}
-				catch (Exception)
-				{
-					ModelState.AddModelError("openid", "Invalid OpenID.");
-					return View("OpenIdLogOn");
-				}
+				ModelState.AddModelError("_FORM", "There was an error processing your login.");
+				return View("RpxLogOn");
 			}
-			else
+
+			IList<Account> users = Models.Account.FindAllByProperty(UserGroup, "OpenId", identifier);
+
+			if (users.Count > 1)
 			{
-				// Stage 3: OpenID Provider sending assertion response
-				switch (openid.Response.Status)
-				{
-					case AuthenticationStatus.Authenticated:
-
-						IList<Account> users =  Models.Account.FindAllByProperty(UserGroup, "OpenId", openid.Response.ClaimedIdentifier.ToString());
-
-						if(users.Count > 1)
-						{
-							ModelState.AddModelError("_FORM", "This user is in the database more than once, this shouldn't happen.");
-							return View("OpenIdLogOn");
-						}
-						else if(users.Count == 0)
-						{
-							//_country = (Request.QueryString["openid.sreg.country"] ?? "");
-							//_dayOfBirth = (Request.QueryString["openid.sreg.dob"] ?? "");
-							//_email = (Request.QueryString["openid.sreg.email"] ?? "");
-							//_fullname = (Request.QueryString["openid.sreg.fullname"] ?? "");
-							//_gender = (Request.QueryString["openid.sreg.gender"] ?? "");
-							//_language = (Request.QueryString["openid.sreg.language"] ?? "");
-							//_nickname = (Request.QueryString["openid.sreg.nickname"] ?? "");
-							//_postcode = (Request.QueryString["openid.sreg.postcode"] ?? "");
-							//_timezone = (Request.QueryString["openid.sreg.timezone"] ?? "");
-
-							new Account {OpenId = openid.Response.ClaimedIdentifier.ToString()}.CreateAndFlush(UserGroup);
-						}
-
-						FormsAuthentication.RedirectFromLoginPage(openid.Response.ClaimedIdentifier, false);
-						break;
-					case AuthenticationStatus.Canceled:
-						ModelState.AddModelError("_FORM", "Login canceled by provider.");
-						return View("OpenIdLogOn");
-					case AuthenticationStatus.Failed:
-						ModelState.AddModelError("_FORM", openid.Response.Exception.Message);
-						return View("OpenIdLogOn");
-				}
+				ModelState.AddModelError("_FORM", "This user is in the database more than once, this shouldn't happen.");
+				return View("RpxLogOn");
 			}
+			else if (users.Count == 0)
+			{
+				new Account { OpenId = identifier, DisplayName = displayName}.CreateAndFlush(UserGroup);
+			}
+
+			FormsAuthentication.RedirectFromLoginPage(identifier, false);
+
 			return new EmptyResult();
 		}
+
+		//[SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+		//  Justification = "Needs to take same parameter type as Controller.Redirect()")]
+		//[HandleError]
+		//public ActionResult Authenticate()
+		//{
+		//  var openIdString = Request.Form["openid"];
+		//  var openid = new OpenIdRelyingParty();
+		//  if (openid.Response == null)
+		//  {
+		//    // Stage 2: user submitting Identifier
+		//    try
+		//    {
+		//      Identifier id;
+		//      if (Identifier.TryParse(openIdString, out id))
+		//      {
+		//        openid.CreateRequest(id).RedirectToProvider();
+		//      }
+		//      else
+		//      {
+		//        ModelState.AddModelError("openid", "Invalid OpenID.");
+		//        return View("OpenIdLogOn");
+		//      }
+		//    }
+		//    catch (Exception)
+		//    {
+		//      ModelState.AddModelError("openid", "Invalid OpenID.");
+		//      return View("OpenIdLogOn");
+		//    }
+		//  }
+		//  else
+		//  {
+		//    // Stage 3: OpenID Provider sending assertion response
+		//    switch (openid.Response.Status)
+		//    {
+		//      case AuthenticationStatus.Authenticated:
+
+		//        IList<Account> users =  Models.Account.FindAllByProperty(UserGroup, "OpenId", openid.Response.ClaimedIdentifier.ToString());
+
+		//        if(users.Count > 1)
+		//        {
+		//          ModelState.AddModelError("_FORM", "This user is in the database more than once, this shouldn't happen.");
+		//          return View("OpenIdLogOn");
+		//        }
+		//        else if(users.Count == 0)
+		//        {
+		//          //_country = (Request.QueryString["openid.sreg.country"] ?? "");
+		//          //_dayOfBirth = (Request.QueryString["openid.sreg.dob"] ?? "");
+		//          //_email = (Request.QueryString["openid.sreg.email"] ?? "");
+		//          //_fullname = (Request.QueryString["openid.sreg.fullname"] ?? "");
+		//          //_gender = (Request.QueryString["openid.sreg.gender"] ?? "");
+		//          //_language = (Request.QueryString["openid.sreg.language"] ?? "");
+		//          //_nickname = (Request.QueryString["openid.sreg.nickname"] ?? "");
+		//          //_postcode = (Request.QueryString["openid.sreg.postcode"] ?? "");
+		//          //_timezone = (Request.QueryString["openid.sreg.timezone"] ?? "");
+
+		//          new Account {OpenId = openid.Response.ClaimedIdentifier.ToString()}.CreateAndFlush(UserGroup);
+		//        }
+
+		//        FormsAuthentication.RedirectFromLoginPage(openid.Response.ClaimedIdentifier, false);
+		//        break;
+		//      case AuthenticationStatus.Canceled:
+		//        ModelState.AddModelError("_FORM", "Login canceled by provider.");
+		//        return View("OpenIdLogOn");
+		//      case AuthenticationStatus.Failed:
+		//        ModelState.AddModelError("_FORM", openid.Response.Exception.Message);
+		//        return View("OpenIdLogOn");
+		//    }
+		//  }
+		//  return new EmptyResult();
+		//}
 
 		public ActionResult LogOff()
 		{

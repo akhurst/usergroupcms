@@ -25,9 +25,19 @@
                 <%= Html.ValidationMessage("LogoUrl", "*") %>
             </p>
             <p>
+                <label for="Url">Url:</label>
+                <%= Html.TextBox("Url", Model.Url) %>
+                <%= Html.ValidationMessage("Url", "*") %>
+            </p>
+            <p>
                 <label for="Description">Description:</label>
                 <%= Html.TextBox("Description", Model.Description) %>
                 <%= Html.ValidationMessage("Description", "*") %>
+            </p>
+            <p>
+                <label for="HomePage">HomePage:</label>
+                <%= Html.TextBox("HomePage", Model.HomePage) %>
+                <%= Html.ValidationMessage("HomePage", "*") %>
             </p>
             <p>
                 <input type="submit" value="Save" />

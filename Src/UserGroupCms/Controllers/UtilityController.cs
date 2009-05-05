@@ -11,11 +11,7 @@ namespace UserGroupCms.Controllers
 
 		public ActionResult LoadData()
 		{
-			if (UserIsAdmin())
-			{
 				LoadBaseData();
-			}
-
 			return RedirectToAction("Index", "Home");
 		}
 
@@ -27,7 +23,8 @@ namespace UserGroupCms.Controllers
 			                  	ShortName = "AggielandDNUG",
 			                  	LogoUrl = "../../Content/images/aggielanddnug2.png",
 			                  	WelcomeMessage =
-			                  		"<p>Welcome to the website of the Aggieland .NET User's Group</p><p>Our monthly meetings are at noon on the 2nd Tuesday of each month on the Texas A&M University campus.</p>"
+			                  		"<p>Welcome to the website of the Aggieland .NET User's Group</p><p>Our monthly meetings are at noon on the 2nd Tuesday of each month on the Texas A&M University campus.</p>",
+													ContactInfo = "<h3>Stay in touch with the DNUG</h3><ul><li>Join the mailing list<ul><li><a href=\"mailto://listserv@listserv.tamu.edu?body=subscribe%20dotnet\">by email</a></li><li><a href=\"https://listserv.tamu.edu/cgi-bin/wa?SUBED1=dotnet&A=1\">by web</a></li></ul></li><li>Follow us on <a href=\"http://twitter.com/aggielanddnug\">twitter</a></li><li>Join the <a href=\"http://www.facebook.com/groups.php?ref=sb#/group.php?gid=43083919957\">facebook group</a></li></ul>"
 			                  };
 			group.CreateAndFlush();
 
@@ -40,21 +37,22 @@ namespace UserGroupCms.Controllers
 			                    };
 			improving.CreateAndFlush(group);
 
-			Company tamu = new Company
-			               {
-			               	Name = "Texas A&M University",
-			               	Url = "http://www.tamu.edu",
-			               	LogoUrl = "../../Content/images/primaryWhiteMaroon.jpg",
-			               	HomePage = true
-			               };
-
-			new Company
+			Company microsoft = new Company
 			{
 				Name = "Microsoft",
 				Url = "http://www.microsoft.com",
 				LogoUrl = "../../Content/images/microsoft.jpg",
 				HomePage = true
-			}.CreateAndFlush(group);
+			};
+			microsoft.CreateAndFlush(group);
+			Company tamu = new Company
+			{
+				Name = "Texas A&M University",
+				Url = "http://www.tamu.edu",
+				LogoUrl = "../../Content/images/primaryWhiteMaroon.jpg",
+				HomePage = true
+			};
+			tamu.CreateAndFlush(group);
 			new Company
 			{
 				Name = "INETA",
@@ -73,7 +71,6 @@ namespace UserGroupCms.Controllers
 				HomePage = true
 			}.CreateAndFlush(group);
 
-			tamu.CreateAndFlush(group);
 
 			new Person {Name = "Allen Hurst", Company = improving, BlogUrl = "http://ahurst.com"}.CreateAndFlush(group);
 			new Person {Name = "Mike Abney", Company = improving, BlogUrl = "http://practicallyagile.com"}.CreateAndFlush(group);
@@ -81,6 +78,9 @@ namespace UserGroupCms.Controllers
 			new Person {Name = "Robert Stackhouse", Company = tamu, BlogUrl = "http://robertstackhouse.com"}.CreateAndFlush(group);
 			Person eric = new Person {Name = "Eric Huckabay", Company = improving};
 			eric.CreateAndFlush(group);
+
+			Venue gsc = new Venue{Name = "TAMU GSC"};
+			gsc.CreateAndFlush(group);
 
 			new SpecialContent
 			{
@@ -95,11 +95,31 @@ namespace UserGroupCms.Controllers
 
 			new Event
 			{
+				Date = new DateTime(2009, 04, 14, 12, 0, 0),
+				Title = "April Meeting: Shoving Your Code Where It Belongs",
+				Speakers = new[] {eric},
+				Summary =
+					"Come join us for our April meeting. Mike will be covering career growth and how you can be better prepared for getting your next job, promotion, or raise. There will be door prizes provided by Microsoft and pizza provided by Improving Enterprises. Please RSVP if you plan to attend (up to 2 hours before the event) so that we don't have (another) pizza shortage!",
+				Sponsors = new[] {improving, microsoft},
+				EventLink1Text = "Via Facebook",
+				EventLink1Url = "http://www.facebook.com/editevent.php?picture&eid=73126954537&created&new&m=1#/event.php?eid=73126954537",
+				EventLink2Text = "Via Codezone",
+				EventLink2Url = "https://www.ugss.codezone.com/PrivilegedUGEventView.CodezoneCom?EventID=6726",
+				Venue = gsc
+			}.CreateAndFlush(group);
+
+			new Event
+			{
 				Date = new DateTime(2009, 05, 12, 12, 0, 0),
 				Title = "May Meeting: Developing Your Development Career",
 				Speakers = new[] {eric},
-				Summary = "Come join us for our May meeting. There will be pizza and door prizes.",
-				Sponsors = new[] {improving}
+				Summary =
+					"Come join us for our May meeting. Eric will be covering career growth and how you can be better prepared for getting your next job, promotion, or raise. There will be door prizes provided by Microsoft and pizza provided by Improving Enterprises. Please RSVP if you plan to attend (up to 2 hours before the event) so that we don't have (another) pizza shortage!",
+				Sponsors = new[] {improving, microsoft},
+				EventLink1Text = "Via Facebook",
+				EventLink1Url = "",
+				EventLink2Text = "Via Codezone",
+				EventLink2Url = ""
 			}.CreateAndFlush(group);
 
 			new Account {Admin = true, OpenId = "http://ahurst.com/"}.CreateAndFlush(group);

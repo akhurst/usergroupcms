@@ -24,13 +24,7 @@
                 Description
             </th>
             <th>
-                Id
-            </th>
-            <th>
-                UserGroupId
-            </th>
-            <th>
-                IsNew
+                HomePage
             </th>
         </tr>
 
@@ -54,13 +48,7 @@
                 <%= Html.Encode(item.Description) %>
             </td>
             <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.UserGroupId) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsNew) %>
+                <%= Html.Encode(item.HomePage) %>
             </td>
         </tr>
     

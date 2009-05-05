@@ -18,13 +18,13 @@
                 LogoUrl
             </th>
             <th>
+                Url
+            </th>
+            <th>
                 Description
             </th>
             <th>
-                Id
-            </th>
-            <th>
-                IsNew
+                HomePage
             </th>
         </tr>
 
@@ -42,13 +42,13 @@
                 <%= Html.Encode(item.LogoUrl) %>
             </td>
             <td>
+                <%= Html.Encode(item.Url) %>
+            </td>
+            <td>
                 <%= Html.Encode(item.Description) %>
             </td>
             <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsNew) %>
+                <%= Html.Encode(item.HomePage) %>
             </td>
         </tr>
     

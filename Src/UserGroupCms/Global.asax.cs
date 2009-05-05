@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
+using Castle.ActiveRecord.Framework.Config;
 using UserGroupCms.Models;
 
 namespace UserGroupCms
@@ -31,14 +33,19 @@ namespace UserGroupCms
 		protected void Application_Start()
 		{
 			RegisterRoutes(RouteTable.Routes);
+
 			IConfigurationSource source = ConfigurationManager.GetSection("activerecord") as IConfigurationSource;
+
 			ActiveRecordStarter.Initialize(source,
 				typeof(UserGroup),
 				typeof(Event),
 				typeof(Company),
 				typeof(Person),
 				typeof(SpecialContent),
-				typeof(Account));
+				typeof(Account),
+				typeof(Venue));
+
+			NHibernate.Cfg.Environment.UseReflectionOptimizer = false;
 		}
 
 		protected void Application_BeginRequest()

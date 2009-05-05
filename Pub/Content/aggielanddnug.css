@@ -1,0 +1,151 @@
+﻿/* OVERRIDDEN STYLES FROM Site.css */
+
+body
+{
+    background-color: #FFFFFF; /* to adjust the margin and header colors */
+}
+
+h3
+{
+	padding: 3px;
+	color: #5f574f;
+	border: solid 1px #000000;
+	/*background-color: #5f574f;*/
+}
+
+#header h1
+{
+    color: #5f574f;
+}
+
+h4
+{
+	margin: 3px 3px 3px 0px;
+}
+
+h5
+{
+	margin: 3px 3px 3px 0px;
+}
+
+#main
+{
+		border: solid 3px #500000; /* change this value to change the page border (the border around the main content area) */
+}
+
+ul#menu
+{
+	border-bottom: none;
+}
+
+ul#menu li a
+{
+    background-color: #500000; /* change this value to change the background color of the top menu "tabs" */
+    color: #ffffff; /*change this value to change the text color of the top menu items */
+}
+
+ul#menu li a:hover
+{
+    background-color: #5f574f;
+}
+
+#menucontainer
+{
+    margin-top:105px; /* Adjust the height of the mast-head (header) here */
+}
+
+div#title
+{
+    margin-top: 5px;
+}
+
+#logindisplay
+{
+    color: #5f574f;
+}
+
+#logindisplay a:link
+{
+    color: #5f574f;
+}
+
+#logindisplay a:visited
+{
+    color: #5f574f;
+}
+
+#logindisplay a:hover
+{
+    color: #8f877f;
+}
+
+/* END OVERRIDDEN STYLES */
+
+.welcomemessage
+{
+}
+
+.eventlist
+{
+}
+
+.event-description
+{
+
+}
+
+.contactinformation
+{
+}
+
+.indexcontent
+{
+	width: 100%;
+}
+
+.leftside
+{
+	vertical-align: top;
+	border: none;
+	width: auto;
+}
+
+.rightside
+{
+	vertical-align: top;
+	border: none;
+	width: 25%;
+}
+
+.rightside-specialcontent
+{
+	text-align: right;
+}
+
+a:link img, a:visited img {
+    border: none;
+}
+
+a.imagelink
+{
+}
+
+input.openidinput
+{
+	vertical-align: bottom;
+	height: 28px;
+	width: 500px;
+	padding: 3px 3px 3px 30px; 
+	border:1px solid #999999;
+	font-size: 150%;	
+	background:transparent url(../../Content/images/openid-large.png) no-repeat scroll left center;
+}
+
+input.loginbutton
+{
+	vertical-align: bottom;
+	height:36px;
+	padding:3px;
+	border:1px solid #999999;
+	font-size:150%;
+}
