@@ -25,9 +25,9 @@
                 <%= Html.ValidationMessage("Title", "*") %>
             </p>
             <p>
-                <label for="SummaryHtml">Summary:</label>
-                <%= Html.TextBox("SummaryHtml", Model.Summary) %>
-                <%= Html.ValidationMessage("SummaryHtml", "*") %>
+                <label for="Summary">Summary:</label>
+                <%= Html.TextBox("Summary", Model.Summary) %>
+                <%= Html.ValidationMessage("Summary", "*") %>
             </p>
             <p>
                 <label for="EventLink1Text">EventLink1Text:</label>
@@ -64,7 +64,7 @@
             </p>
             <p>
 						 <label for="Venue">Venue:</label>
-							<%=Html.ListBox("Venue", new MultiSelectList(ViewData["Venues"] as IList<UserGroupCms.Models.Venue>, "Id", "Name")) %>
+							<%=Html.DropDownList("Venue", new MultiSelectList(ViewData["Venues"] as IList<UserGroupCms.Models.Venue>, "Id", "Name"))%>
             </p>
             <p>
                 <input type="submit" value="Save" />

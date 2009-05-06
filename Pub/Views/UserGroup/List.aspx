@@ -1,30 +1,33 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.Event>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.UserGroup>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	History
+	List
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>History</h2>
+    <h2>List</h2>
 
     <table>
         <tr>
             <th></th>
             <th>
-                Date
+                LogoUrl
             </th>
             <th>
-                Title
+                Name
             </th>
             <th>
-                Summary
+                ShortName
             </th>
             <th>
-                EventLink
+                WelcomeMessage
             </th>
             <th>
-                ArtifactsUrl
+                Inactive
+            </th>
+            <th>
+                ContactInfoHtml
             </th>
             <th>
                 Id
@@ -45,19 +48,22 @@
                 <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
+                <%= Html.Encode(item.LogoUrl) %>
             </td>
             <td>
-                <%= Html.Encode(item.Title) %>
+                <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.Summary) %>
+                <%= Html.Encode(item.ShortName) %>
             </td>
             <td>
-                <%= Html.Encode(item.EventLink) %>
+                <%= Html.Encode(item.WelcomeMessage) %>
             </td>
             <td>
-                <%= Html.Encode(item.ArtifactsUrl) %>
+                <%= Html.Encode(item.Inactive) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.ContactInfoHtml) %>
             </td>
             <td>
                 <%= Html.Encode(item.Id) %>

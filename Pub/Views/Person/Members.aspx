@@ -1,12 +1,12 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.Company>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.Person>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	List
+	Members
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>List</h2>
+    <h2>Members</h2>
 
     <table>
         <tr>
@@ -15,16 +15,19 @@
                 Name
             </th>
             <th>
-                LogoUrl
+                BlogUrl
             </th>
             <th>
-                Url
+                Url2
             </th>
             <th>
-                Description
+                Bio
             </th>
             <th>
-                HomePage
+                ImagePath
+            </th>
+            <th>
+                CompanyName
             </th>
         </tr>
 
@@ -39,16 +42,19 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.LogoUrl) %>
+                <%= Html.Encode(item.BlogUrl) %>
             </td>
             <td>
-                <%= Html.Encode(item.Url) %>
+                <%= Html.Encode(item.Url2) %>
             </td>
             <td>
-                <%= Html.Encode(item.Description) %>
+                <%= Html.Encode(item.Bio) %>
             </td>
             <td>
-                <%= Html.Encode(item.HomePage) %>
+                <%= Html.Encode(item.ImagePath) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.CompanyName) %>
             </td>
         </tr>
     

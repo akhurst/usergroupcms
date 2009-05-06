@@ -17,15 +17,6 @@
             <th>
                 HomePage
             </th>
-            <th>
-                Id
-            </th>
-            <th>
-                UserGroupId
-            </th>
-            <th>
-                IsNew
-            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -40,15 +31,6 @@
             </td>
             <td>
                 <%= Html.Encode(item.HomePage) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.UserGroupId) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsNew) %>
             </td>
         </tr>
     

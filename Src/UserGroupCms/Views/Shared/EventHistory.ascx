@@ -7,11 +7,13 @@
         <h5>&nbsp;&nbsp;Date: &nbsp;&nbsp;<%= Model.Date.ToString("f") %></h5>
 				<h5>&nbsp;&nbsp;Presenter: &nbsp;&nbsp;<%= Model.SpeakersString %></h5>
 				<p><%= Model.Summary %></p>
-				<p>RSVP: 
-				<ul>
-					<li><a href="<%= Model.EventLink1Url %>"><%= Model.EventLink1Text %></a></li>
-					<li><a href="<%= Model.EventLink2Url %>"><%= Model.EventLink2Text %></a></li>
-				</ul>
+				<% if (!string.IsNullOrEmpty(Model.ArtifactsUrl)) {%>
+					<p>Presentation Materials: 
+						<ul>
+							<li><a href="<%= Model.ArtifactsUrl %>"><%= Model.ArtifactsUrl%></a></li>
+						</ul>
+					</p>
+				<%} %>
 	    </fieldset>
 		</div>
 		

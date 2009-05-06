@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.UserGroup>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<UserGroupCms.Models.Venue>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	List
@@ -12,13 +12,10 @@
         <tr>
             <th></th>
             <th>
-                Name
+                Location
             </th>
             <th>
-                Id
-            </th>
-            <th>
-                IsNew
+                MapImageUrl
             </th>
         </tr>
 
@@ -33,10 +30,7 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsNew) %>
+                <%= Html.Encode(item.MapImageUrl) %>
             </td>
         </tr>
     

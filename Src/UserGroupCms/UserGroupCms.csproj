@@ -119,6 +119,7 @@
     <Content Include="Content\images\aggieLogoMaroonNobevel.jpg" />
     <Content Include="Content\images\aggieMark.jpg" />
     <Content Include="Content\images\devexpress.png" />
+    <Content Include="Content\images\gscmap.gif" />
     <Content Include="Content\images\improving200.png" />
     <Content Include="Content\images\microsoft.jpg" />
     <Content Include="Content\images\openid-large.png" />
@@ -140,6 +141,7 @@
     <Content Include="Views\Person\List.aspx" />
     <Content Include="Views\Person\Members.aspx" />
     <Content Include="Views\Shared\EventDetails.ascx" />
+    <Content Include="Views\Shared\EventHistory.ascx" />
     <Content Include="Views\SpecialContent\Edit.aspx" />
     <Content Include="Views\SpecialContent\List.aspx" />
     <Content Include="Views\UserGroup\Edit.aspx" />

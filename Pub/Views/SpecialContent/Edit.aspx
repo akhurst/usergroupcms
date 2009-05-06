@@ -16,23 +16,13 @@
             <legend>Fields</legend>
             <p>
                 <label for="Content">Content:</label>
-                <%= Html.TextBox("Content", Model.Content) %>
+                <%= Html.TextArea("Content", Model.Content) %>
                 <%= Html.ValidationMessage("Content", "*") %>
             </p>
             <p>
                 <label for="HomePage">HomePage:</label>
                 <%= Html.TextBox("HomePage", Model.HomePage) %>
                 <%= Html.ValidationMessage("HomePage", "*") %>
-            </p>
-            <p>
-                <label for="Id">Id:</label>
-                <%= Html.TextBox("Id", Model.Id) %>
-                <%= Html.ValidationMessage("Id", "*") %>
-            </p>
-            <p>
-                <label for="UserGroupId">UserGroupId:</label>
-                <%= Html.TextBox("UserGroupId", Model.UserGroupId) %>
-                <%= Html.ValidationMessage("UserGroupId", "*") %>
             </p>
             <p>
                 <input type="submit" value="Save" />

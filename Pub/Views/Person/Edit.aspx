@@ -20,14 +20,14 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
-                <label for="Url">Url:</label>
-                <%= Html.TextBox("Url", Model.Url) %>
-                <%= Html.ValidationMessage("Url", "*") %>
+                <label for="BlogUrl">BlogUrl:</label>
+                <%= Html.TextBox("BlogUrl", Model.BlogUrl) %>
+                <%= Html.ValidationMessage("BlogUrl", "*") %>
             </p>
             <p>
-                <label for="CompanyName">CompanyName:</label>
-                <%= Html.TextBox("CompanyName", Model.CompanyName) %>
-                <%= Html.ValidationMessage("CompanyName", "*") %>
+                <label for="Url2">Url2:</label>
+                <%= Html.TextBox("Url2", Model.Url2) %>
+                <%= Html.ValidationMessage("Url2", "*") %>
             </p>
             <p>
                 <label for="Bio">Bio:</label>
@@ -35,13 +35,18 @@
                 <%= Html.ValidationMessage("Bio", "*") %>
             </p>
             <p>
-                <label for="Id">Id:</label>
-                <%= Html.TextBox("Id", Model.Id) %>
-                <%= Html.ValidationMessage("Id", "*") %>
+                <label for="ImagePath">ImagePath:</label>
+                <%= Html.TextBox("ImagePath", Model.ImagePath) %>
+                <%= Html.ValidationMessage("ImagePath", "*") %>
+            </p>
+            <p>
+                <label for="CompanyName">CompanyName:</label>
+                <%= Html.TextBox("CompanyName", Model.CompanyName) %>
+                <%= Html.ValidationMessage("CompanyName", "*") %>
             </p>
             <p>
 						 <label for="Company">Company:</label>
-							<%=Html.DropDownList("Company", new MultiSelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name")) %>
+							<%=Html.ListBox("Company", new MultiSelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name"))%>
             </p>
             <p>
                 <input type="submit" value="Save" />

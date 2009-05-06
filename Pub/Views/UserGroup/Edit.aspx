@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UserGroupCms.Models.Company>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UserGroupCms.Models.UserGroup>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -20,24 +20,29 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
+                <label for="ShortName">ShortName:</label>
+                <%= Html.TextBox("ShortName", Model.ShortName) %>
+                <%= Html.ValidationMessage("ShortName", "*") %>
+            </p>
+            <p>
                 <label for="LogoUrl">LogoUrl:</label>
                 <%= Html.TextBox("LogoUrl", Model.LogoUrl) %>
                 <%= Html.ValidationMessage("LogoUrl", "*") %>
             </p>
             <p>
-                <label for="Url">Url:</label>
-                <%= Html.TextBox("Url", Model.Url) %>
-                <%= Html.ValidationMessage("Url", "*") %>
+                <label for="WelcomeMessage">WelcomeMessage:</label>
+                <%= Html.TextArea("WelcomeMessage", Model.WelcomeMessage) %>
+                <%= Html.ValidationMessage("WelcomeMessage", "*") %>
             </p>
             <p>
-                <label for="Description">Description:</label>
-                <%= Html.TextBox("Description", Model.Description) %>
-                <%= Html.ValidationMessage("Description", "*") %>
+                <label for="Inactive">Inactive:</label>
+                <%= Html.TextBox("Inactive", Model.Inactive) %>
+                <%= Html.ValidationMessage("Inactive", "*") %>
             </p>
             <p>
-                <label for="HomePage">HomePage:</label>
-                <%= Html.TextBox("HomePage", Model.HomePage) %>
-                <%= Html.ValidationMessage("HomePage", "*") %>
+                <label for="ContactInfo">ContactInfoHtml:</label>
+                <%= Html.TextArea("ContactInfo", Model.ContactInfoHtml) %>
+                <%= Html.ValidationMessage("ContactInfo", "*") %>
             </p>
             <p>
                 <input type="submit" value="Save" />

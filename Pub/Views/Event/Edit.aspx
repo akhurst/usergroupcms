@@ -25,14 +25,29 @@
                 <%= Html.ValidationMessage("Title", "*") %>
             </p>
             <p>
-                <label for="Summary">Summary:</label>
-                <%= Html.TextBox("Summary", Model.Summary) %>
-                <%= Html.ValidationMessage("Summary", "*") %>
+                <label for="SummaryHtml">Summary:</label>
+                <%= Html.TextBox("SummaryHtml", Model.Summary) %>
+                <%= Html.ValidationMessage("SummaryHtml", "*") %>
             </p>
             <p>
-                <label for="EventLink">EventLink:</label>
-                <%= Html.TextBox("EventLink", Model.EventLink) %>
-                <%= Html.ValidationMessage("EventLink", "*") %>
+                <label for="EventLink1Text">EventLink1Text:</label>
+                <%= Html.TextBox("EventLink1Text", Model.EventLink1Text) %>
+                <%= Html.ValidationMessage("EventLink1Text", "*") %>
+            </p>
+            <p>
+                <label for="EventLink1Url">EventLink1Url:</label>
+                <%= Html.TextBox("EventLink1Url", Model.EventLink1Url) %>
+                <%= Html.ValidationMessage("EventLink1Url", "*") %>
+            </p>
+            <p>
+                <label for="EventLink2Text">EventLink2Text:</label>
+                <%= Html.TextBox("EventLink2Text", Model.EventLink2Text) %>
+                <%= Html.ValidationMessage("EventLink2Text", "*") %>
+            </p>
+            <p>
+                <label for="EventLink2Url">EventLink2Url:</label>
+                <%= Html.TextBox("EventLink2Url", Model.EventLink2Url) %>
+                <%= Html.ValidationMessage("EventLink2Url", "*") %>
             </p>
             <p>
                 <label for="ArtifactsUrl">ArtifactsUrl:</label>
@@ -46,6 +61,10 @@
             <p>
 						 <label for="Speakers">Speakers:</label>
 							<%=Html.ListBox("Speakers", new MultiSelectList(ViewData["Speakers"] as IList<UserGroupCms.Models.Person>, "Id", "Name")) %>
+            </p>
+            <p>
+						 <label for="Venue">Venue:</label>
+							<%=Html.ListBox("Venue", new MultiSelectList(ViewData["Venues"] as IList<UserGroupCms.Models.Venue>, "Id", "Name")) %>
             </p>
             <p>
                 <input type="submit" value="Save" />

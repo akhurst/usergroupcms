@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UserGroupCms.Models.UserGroup>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UserGroupCms.Models.Venue>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -15,9 +15,14 @@
         <fieldset>
             <legend>Fields</legend>
             <p>
-                <label for="Name">Name:</label>
+                <label for="Name">Location:</label>
                 <%= Html.TextBox("Name", Model.Name) %>
                 <%= Html.ValidationMessage("Name", "*") %>
+            </p>
+            <p>
+                <label for="MapImageUrl">MapImageUrl:</label>
+                <%= Html.TextBox("MapImageUrl", Model.MapImageUrl) %>
+                <%= Html.ValidationMessage("MapImageUrl", "*") %>
             </p>
             <p>
                 <input type="submit" value="Save" />

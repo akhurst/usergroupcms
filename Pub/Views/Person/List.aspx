@@ -15,19 +15,13 @@
                 Name
             </th>
             <th>
-                Url
+                BlogUrl
             </th>
             <th>
                 CompanyName
             </th>
             <th>
                 Bio
-            </th>
-            <th>
-                Id
-            </th>
-            <th>
-                IsNew
             </th>
         </tr>
 
@@ -42,7 +36,7 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.Url) %>
+                <%= Html.Encode(item.BlogUrl) %>
             </td>
             <td>
                 <%= Html.Encode(item.CompanyName) %>
