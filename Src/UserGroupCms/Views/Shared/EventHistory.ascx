@@ -6,6 +6,7 @@
         <legend class="event-description"><%= Html.Encode(Model.Title) %></legend>        
         <h5>&nbsp;&nbsp;Date: &nbsp;&nbsp;<%= Model.Date.ToString("f") %></h5>
 				<h5>&nbsp;&nbsp;Presenter: &nbsp;&nbsp;<%= Model.SpeakersString %></h5>
+				<h5>&nbsp;&nbsp;Venue: &nbsp;&nbsp;<a href="<%= Model.Venue.MapImageUrl %>" target="blank"><%= Model.Venue.Name %></a></h5>
 				<p><%= Model.Summary %></p>
 				<% if (!string.IsNullOrEmpty(Model.ArtifactsUrl)) {%>
 					<p>Presentation Materials: 
@@ -19,7 +20,7 @@
 		
 		<% if(ViewData["UserAccount"] != null && ((Account)ViewData["UserAccount"]).Admin) {%>
     <p>
-        <%=Html.ActionLink("Edit", "Edit", new { ID = Model.Id })%> |
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Edit", "Edit", "Event", new { ID = Model.Id })%> |
+        <%=Html.ActionLink("Back to List", "Index", "Event") %>
     </p>
     <%} %>

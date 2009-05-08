@@ -15,7 +15,7 @@
         <fieldset>
             <legend>Fields</legend>
             <p>
-                <label for="Name">Location:</label>
+                <label for="Name">Name:</label>
                 <%= Html.TextBox("Name", Model.Name) %>
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>

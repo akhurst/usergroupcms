@@ -6,6 +6,7 @@
         <legend class="event-description"><%= Html.Encode(Model.Title) %></legend>        
         <h5>&nbsp;&nbsp;Date: &nbsp;&nbsp;<%= Model.Date.ToString("f") %></h5>
 				<h5>&nbsp;&nbsp;Presenter: &nbsp;&nbsp;<%= Model.SpeakersString %></h5>
+				<h5>&nbsp;&nbsp;Venue: &nbsp;&nbsp;<%= Model.Venue.Name %></h5>
 				<p><%= Model.Summary %></p>
 				<% if (!string.IsNullOrEmpty(Model.ArtifactsUrl)) {%>
 					<p>Presentation Materials: 

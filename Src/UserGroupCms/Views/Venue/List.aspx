@@ -12,7 +12,7 @@
         <tr>
             <th></th>
             <th>
-                Location
+                Name
             </th>
             <th>
                 MapImageUrl

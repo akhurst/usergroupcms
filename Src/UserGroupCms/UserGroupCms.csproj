@@ -142,6 +142,7 @@
     <Content Include="Views\Person\Members.aspx" />
     <Content Include="Views\Shared\EventDetails.ascx" />
     <Content Include="Views\Shared\EventHistory.ascx" />
+    <Content Include="Views\Shared\PersonDetails.ascx" />
     <Content Include="Views\SpecialContent\Edit.aspx" />
     <Content Include="Views\SpecialContent\List.aspx" />
     <Content Include="Views\UserGroup\Edit.aspx" />
