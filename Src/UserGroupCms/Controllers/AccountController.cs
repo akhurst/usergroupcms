@@ -96,6 +96,9 @@ namespace UserGroupCms.Controllers
 			string identifier = RpxHelper.ParseIdentifier(authInfo);
 			string displayName = RpxHelper.ParseDisplayName(authInfo);
 
+			if(string.IsNullOrEmpty(displayName))
+				displayName = identifier;
+
 			if(identifier == null)
 			{
 				ModelState.AddModelError("_FORM", "There was an error processing your login.");

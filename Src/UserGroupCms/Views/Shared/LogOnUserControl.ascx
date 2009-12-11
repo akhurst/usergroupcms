@@ -1,8 +1,20 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Import Namespace="UserGroupCms.Models"%>
 <%
     if (Request.IsAuthenticated) {
 %>
-        Welcome <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
+        Welcome 
+        <b>
+					<%if (ViewData["UserAccount"] != null) {%>
+					
+		        <%= Html.Encode(((Account)ViewData["UserAccount"]).DisplayName)%>
+
+		      <%} else{%>
+
+		        <%= Html.Encode(Page.User.Identity.Name)%>
+
+		      <%} %>
+	      </b>!
         [ <%= Html.ActionLink("Log Off", "LogOff", "Account") %> ]
 <%
     }

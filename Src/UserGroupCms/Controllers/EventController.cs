@@ -19,10 +19,10 @@ namespace UserGroupCms.Controllers
 		[ValidateInput(false)]
 		public override ActionResult Edit(Event model)
 		{
-			BinderHelper.Fill(model.Sponsors, Request.Form["Sponsors"]);
-			BinderHelper.Fill(model.Speakers, Request.Form["Speakers"]);
+			BinderHelper.Fill(model.Sponsors, Request.Form["SponsorsList"]);
+			BinderHelper.Fill(model.Speakers, Request.Form["SpeakersList"]);
 			
-			model.Venue = BinderHelper.Resolve<Venue>(Request.Form["Venue"]);
+			model.Venue = BinderHelper.Resolve<Venue>(Request.Form["VenuesList"]);
 
 			return base.Edit(model);
 		}

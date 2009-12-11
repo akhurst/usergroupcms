@@ -3,8 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Gallio.Framework;
-using MbUnit.Framework;
+using NUnit.Framework;
 using UserGroupCms.Controllers;
 
 namespace UserGroupCms.Tests.Controllers

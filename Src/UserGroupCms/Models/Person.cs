@@ -26,5 +26,16 @@ namespace UserGroupCms.Models
 
 		[Property]
 		public string CompanyName { get; set; }
+
+		public int? CompanyId
+		{
+			get
+			{
+				if (Company != null)
+					return Company.Id;
+				else
+					return 0;
+			}
+		}
 	}
 }

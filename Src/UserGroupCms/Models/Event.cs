@@ -43,6 +43,17 @@ namespace UserGroupCms.Models
 		[BelongsTo]
 		public Venue Venue { get; set; }
 
+		public int? VenueId
+		{
+			get
+			{
+				if (Venue != null)
+					return Venue.Id;
+				else
+					return null;
+			}
+		}
+
 		public string SpeakersString
 		{
 			get

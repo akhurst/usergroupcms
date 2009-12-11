@@ -46,7 +46,7 @@
             </p>
             <p>
 						 <label for="Company">Company:</label>
-							<%=Html.ListBox("Company", new MultiSelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name"))%>
+							<%=Html.DropDownList("CompaniesList", new SelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name", Model.CompanyId))%>
             </p>
             <p>
                 <input type="submit" value="Save" />

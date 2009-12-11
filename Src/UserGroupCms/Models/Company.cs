@@ -9,6 +9,12 @@ namespace UserGroupCms.Models
 	[ActiveRecord]
 	public class Company : AbstractModel<Company>
 	{
+		public int? CompanyId
+		{
+			get{ return Id;}
+			set{ Id = value;}
+		}
+
 		[Property]
 		public string Name { get; set; }
 

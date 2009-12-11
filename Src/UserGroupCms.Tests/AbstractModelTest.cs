@@ -1,4 +1,4 @@
-﻿using MbUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace UserGroupCms.Tests
 {

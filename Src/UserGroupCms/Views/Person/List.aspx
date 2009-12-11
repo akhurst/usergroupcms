@@ -29,8 +29,8 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-                <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
+                <%= Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) %> |
+                <%= Html.ActionLink("Details", "Details", new {  id=item.Id })%>
             </td>
             <td>
                 <%= Html.Encode(item.Name) %>
@@ -39,16 +39,14 @@
                 <%= Html.Encode(item.BlogUrl) %>
             </td>
             <td>
+            <% if(item.Company != null) {%>
+							<%= item.Company.Name %>
+						<%} else { %>
                 <%= Html.Encode(item.CompanyName) %>
+            <%} %>
             </td>
             <td>
                 <%= Html.Encode(item.Bio) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsNew) %>
             </td>
         </tr>
     

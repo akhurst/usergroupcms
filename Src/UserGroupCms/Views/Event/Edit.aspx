@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UserGroupCms.Models.Event>" %>
+<%@ Import Namespace="UserGroupCms.Models"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -56,15 +57,15 @@
             </p>
             <p>
 						 <label for="Sponsors">Sponsors:</label>
-							<%=Html.ListBox("Sponsors", new MultiSelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name")) %>
+							<%=Html.ListBox("SponsorsList", new MultiSelectList(ViewData["Companies"] as IList<UserGroupCms.Models.Company>, "Id", "Name", Model.Sponsors)) %>
             </p>
             <p>
 						 <label for="Speakers">Speakers:</label>
-							<%=Html.ListBox("Speakers", new MultiSelectList(ViewData["Speakers"] as IList<UserGroupCms.Models.Person>, "Id", "Name")) %>
+							<%=Html.ListBox("SpeakersList", new MultiSelectList(ViewData["Speakers"] as IList<UserGroupCms.Models.Person>, "Id", "Name", Model.Speakers)) %>
             </p>
             <p>
-						 <label for="Venue">Venue:</label>
-							<%=Html.DropDownList("Venue", new MultiSelectList(ViewData["Venues"] as IList<UserGroupCms.Models.Venue>, "Id", "Name"))%>
+							 <label for="Venue">Venue:</label>
+							<%=Html.DropDownList("VenuesList", new SelectList(ViewData["Venues"] as IList<UserGroupCms.Models.Venue>, "Id", "Name", Model.Venue))%>
             </p>
             <p>
                 <input type="submit" value="Save" />

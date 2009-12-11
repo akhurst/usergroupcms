@@ -1,5 +1,5 @@
 ﻿using System;
-using MbUnit.Framework;
+using NUnit.Framework;
 using UserGroupCms.Controllers;
 using UserGroupCms.Models;
 
