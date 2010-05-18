@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserGroupCms", "UserGroupCms\UserGroupCms.csproj", "{54DEFD7F-B066-43FD-8DCF-95ED14E9B296}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserGroupCms.Tests", "UserGroupCms.Tests\UserGroupCms.Tests.csproj", "{6E65CFE7-94E4-4A05-B912-BF185CEA9176}"

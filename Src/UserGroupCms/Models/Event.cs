@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -11,9 +12,11 @@ namespace UserGroupCms.Models
 	public class Event : AbstractModel<Event>
 	{
 		[Property]
+        [Required(ErrorMessage = "Event must have a date")]
 		public DateTime Date { get; set; }
 
 		[Property]
+        [Required(ErrorMessage = "Event must have a title")]
 		public string Title { get; set; }
 
 		[HasAndBelongsToMany(Table = "EventSpeakers", ColumnKey="eventid", ColumnRef="speakerid")]

@@ -22,7 +22,7 @@
 		
 		<% if(ViewData["UserAccount"] != null && ((Account)ViewData["UserAccount"]).Admin) {%>
     <p>
-        <%=Html.ActionLink("Edit", "Edit", "Event", new { id = Model.Id })%> |
+        <%=Html.ActionLink("Edit", "Edit", "Event", new { id = Model.Id }, null)%> |
         <%=Html.ActionLink("Back to List", "Index", "Event") %>
     </p>
     <%} %>
