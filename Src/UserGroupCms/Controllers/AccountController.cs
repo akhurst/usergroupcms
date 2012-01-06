@@ -114,7 +114,7 @@ namespace UserGroupCms.Controllers
 			}
 			else if (users.Count == 0)
 			{
-				new Account { OpenId = identifier, DisplayName = displayName}.CreateAndFlush(UserGroup);
+				new Account { OpenId = identifier, Name = displayName}.CreateAndFlush(UserGroup);
 			}
 
 			FormsAuthentication.RedirectFromLoginPage(identifier, false);

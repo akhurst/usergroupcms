@@ -7,7 +7,7 @@
         <b>
 					<%if (ViewData["UserAccount"] != null) {%>
 					
-		        <%= Html.Encode(((Account)ViewData["UserAccount"]).DisplayName)%>
+		        <%= Html.Encode(((Account)ViewData["UserAccount"]).Name)%>
 
 		      <%} else{%>
 

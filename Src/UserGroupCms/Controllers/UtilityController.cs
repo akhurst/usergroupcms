@@ -96,7 +96,7 @@ namespace UserGroupCms.Controllers
 			new Event
 			{
 				Date = new DateTime(2009, 04, 14, 12, 0, 0),
-				Title = "April Meeting: Shoving Your Code Where It Belongs",
+				Name = "April Meeting: Shoving Your Code Where It Belongs",
 				Speakers = new[] {eric},
 				Summary =
 					"Come join us for our April meeting. Mike will be covering career growth and how you can be better prepared for getting your next job, promotion, or raise. There will be door prizes provided by Microsoft and pizza provided by Improving Enterprises. Please RSVP if you plan to attend (up to 2 hours before the event) so that we don't have (another) pizza shortage!",
@@ -111,7 +111,7 @@ namespace UserGroupCms.Controllers
 			new Event
 			{
 				Date = new DateTime(2009, 05, 12, 12, 0, 0),
-				Title = "May Meeting: Developing Your Development Career",
+				Name = "May Meeting: Developing Your Development Career",
 				Speakers = new[] {eric},
 				Summary =
 					"Come join us for our May meeting. Eric will be covering career growth and how you can be better prepared for getting your next job, promotion, or raise. There will be door prizes provided by Microsoft and pizza provided by Improving Enterprises. Please RSVP if you plan to attend (up to 2 hours before the event) so that we don't have (another) pizza shortage!",

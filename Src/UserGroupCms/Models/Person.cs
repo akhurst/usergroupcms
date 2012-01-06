@@ -7,9 +7,6 @@ namespace UserGroupCms.Models
 	public class Person : AbstractModel<Person>
 	{
 		[Property]
-		public string Name { get; set; }
-
-		[Property]
 		public string BlogUrl { get; set; }
 
 		[Property]

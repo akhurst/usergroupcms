@@ -26,40 +26,30 @@ namespace UserGroupCms.Controllers
         [ValidateInput(true)]
         public override ActionResult Edit(Event model)
         {
-            BinderHelper.Fill(model.Sponsors, Request.Form["SponsorsList"]);
-            BinderHelper.Fill(model.Speakers, Request.Form["SpeakersList"]);
+//            BinderHelper.Fill(model.Sponsors, Request.Form["SponsorsList"]);
+//            BinderHelper.Fill(model.Speakers, Request.Form["SpeakersList"]);
 
-            model.Venue = BinderHelper.Resolve<Venue>(Request.Form["VenuesList"]);
+//            model.Venue = BinderHelper.Resolve<Venue>(Request.Form["VenuesList"]);
 
             return base.Edit(model);
         }
 
-        private MultiSelectList GetCompaniesList(Event ev)
+        private IEnumerable<SelectListItem> GetCompaniesList(Event ev)
         {
-            IEnumerable<int?> sponsorIds = null;
-
-            if (ev.Sponsors != null)
-                sponsorIds = from s in ev.Sponsors select s.Id;
-
             IList<Company> companies = AbstractModel<Company>.FindAll(UserGroup);
-            return new MultiSelectList(companies, "Id", "Name", sponsorIds);
+            return companies.ToSelectListItems(ev.Sponsors);
         }
 
-        private MultiSelectList GetSpeakersList(Event ev)
+        private IEnumerable<SelectListItem> GetSpeakersList(Event ev)
         {
-            IEnumerable<int?> speakerIds = null;
-
-            if (ev.Speakers != null)
-                speakerIds = from s in ev.Speakers select s.Id;
-
             IList<Person> people = AbstractModel<Person>.FindAll(UserGroup);
-            return new MultiSelectList(people, "Id", "Name", speakerIds);
+            return people.ToSelectListItems(ev.Speakers);
         }
 
-        private SelectList GetVenuesList(Event ev)
+        private IEnumerable<SelectListItem> GetVenuesList(Event ev)
         {
             IList<Venue> venues = AbstractModel<Venue>.FindAll(UserGroup);
-            return new SelectList(venues, "Id", "Name", ev.VenueId);
+            return venues.ToSelectListItems(ev.Venue);
         }
     }
 }

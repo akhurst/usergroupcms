@@ -24,11 +24,11 @@
                 </div>
 
                 <div class="editor-label">
-                    <%: Html.LabelFor(m=>m.Title) %>
+                    <%: Html.LabelFor(m=>m.Name) %>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m=> m.Title) %>
-                    <%: Html.ValidationMessageFor(m=>m.Title) %>
+                    <%: Html.TextBoxFor(m=> m.Name) %>
+                    <%: Html.ValidationMessageFor(m=>m.Name) %>
                 </div>
 
                 <div class="editor-label">
@@ -83,7 +83,7 @@
                     <%: Html.LabelFor(m=>m.Sponsors) %>
                 </div>
                 <div class="editor-field">
-                    <%: Html.ListBoxFor(m=>m.Sponsors, (MultiSelectList)ViewData["Companies"]) %>
+                    <%: Html.ListBoxFor(m=>m.Sponsors, (IEnumerable<SelectListItem>)ViewData["Companies"]) %>
                     <%: Html.ValidationMessageFor(m=>m.Sponsors) %>
                 </div>
 
@@ -91,7 +91,7 @@
                     <%: Html.LabelFor(m=>m.Speakers) %>
                 </div>
                 <div class="editor-field">
-                    <%: Html.ListBoxFor(m=>m.Speakers,(MultiSelectList)ViewData["Speakers"]) %>
+                    <%: Html.ListBoxFor(m=>m.Speakers,(IEnumerable<SelectListItem>)ViewData["Speakers"]) %>
                     <%: Html.ValidationMessageFor(m=>m.Speakers) %>
                 </div>
 
@@ -99,7 +99,7 @@
                     <%: Html.LabelFor(m=>m.Venue) %>
                 </div>
                 <div class="editor-field">
-                    <%: Html.DropDownListFor(m=>m.Venue,(SelectList)ViewData["Venues"]) %>
+                    <%: Html.DropDownListFor(m=>m.Venue,(IEnumerable<SelectListItem>)ViewData["Venues"]) %>
                     <%: Html.ValidationMessageFor(m=>m.Venue) %>
                 </div>
 

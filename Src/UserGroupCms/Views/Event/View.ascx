@@ -8,7 +8,7 @@
         </p>
         <p>
             Title:
-            <%= Html.Encode(Model.Title) %>
+            <%= Html.Encode(Model.Name) %>
         </p>
         <p>
             Location:

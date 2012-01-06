@@ -26,7 +26,7 @@ namespace UserGroupCms.Tests.Controllers
 			// Verify
 			ViewDataDictionary viewData = result.ViewData as ViewDataDictionary;
 
-			Assert.AreEqual("Home Page", viewData["Title"]);
+			Assert.AreEqual("Home Page", viewData["Name"]);
 			Assert.AreEqual("Welcome to ASP.NET MVC!", viewData["Message"]);
 		}
 
@@ -42,7 +42,7 @@ namespace UserGroupCms.Tests.Controllers
 			// Verify
 			ViewDataDictionary viewData = result.ViewData as ViewDataDictionary;
 
-			Assert.AreEqual("About Page", viewData["Title"]);
+			Assert.AreEqual("About Page", viewData["Name"]);
 		}
 	}
 }

@@ -13,9 +13,6 @@ namespace UserGroupCms.Models
 		public string OpenId { get; set; }
 
 		[Property]
-		public string DisplayName { get; set; }
-
-		[Property]
 		public bool Admin { get; set; }
 	}
 }

@@ -3,7 +3,7 @@
 
 		<div class="event-description">
 	    <fieldset>
-        <legend class="event-description"><%= Html.Encode(Model.Title) %></legend>        
+        <legend class="event-description"><%= Html.Encode(Model.Name) %></legend>        
         <h5>&nbsp;&nbsp;Date: &nbsp;&nbsp;<%= Model.Date.ToString("f") %></h5>
 				<h5>&nbsp;&nbsp;Presenter: &nbsp;&nbsp;<%= Model.SpeakersString %></h5>
 				<% if(Model.Venue != null) { %>

@@ -16,9 +16,6 @@ namespace UserGroupCms.Models
 		}
 
 		[Property]
-		public string Name { get; set; }
-
-		[Property]
 		public string LogoUrl { get; set; }
 
 		[Property]

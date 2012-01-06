@@ -15,9 +15,8 @@ namespace UserGroupCms.Models
         [Required(ErrorMessage = "Event must have a date")]
 		public DateTime Date { get; set; }
 
-		[Property]
-        [Required(ErrorMessage = "Event must have a title")]
-		public string Title { get; set; }
+        [Required(ErrorMessage = "Event must have a name")]
+		public override string Name { get; set; }
 
 		[HasAndBelongsToMany(Table = "EventSpeakers", ColumnKey="eventid", ColumnRef="speakerid")]
 		public IList<Person> Speakers { get; set; }

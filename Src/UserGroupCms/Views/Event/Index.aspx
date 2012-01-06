@@ -51,7 +51,7 @@
                 <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
             </td>
             <td>
-                <%= Html.Encode(item.Title) %>
+                <%= Html.Encode(item.Name) %>
             </td>
             <td>
                 <%= Html.Encode(item.Location) %>

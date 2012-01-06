@@ -13,9 +13,6 @@ namespace UserGroupCms.Models
 		public string LogoUrl { get; set; }
 
 		[Property]
-		public string Name { get; set; }
-
-		[Property]
 		public string ShortName { get; set; }
 
 		[Property(Length = 4000)]

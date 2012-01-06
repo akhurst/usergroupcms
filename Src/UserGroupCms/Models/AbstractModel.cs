@@ -12,6 +12,9 @@ namespace UserGroupCms.Models
 		[PrimaryKey]
 		public int? Id{get;set;}
 
+        [Property]
+        public virtual string Name { get; set; }
+
 		[Property]
 		public int UserGroupId { get; set; }
 

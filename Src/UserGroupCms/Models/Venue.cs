@@ -10,9 +10,6 @@ namespace UserGroupCms.Models
 	public class Venue : AbstractModel<Venue>
 	{
 		[Property]
-		public string Name { get; set; }
-
-		[Property]
 		public string MapImageUrl { get; set; }
 	}
 }
