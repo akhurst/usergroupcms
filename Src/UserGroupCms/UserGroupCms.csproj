@@ -177,7 +177,9 @@
     <Content Include="Views\UserGroup\List.aspx" />
     <Content Include="Views\Venue\Edit.aspx" />
     <Content Include="Views\Venue\List.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
